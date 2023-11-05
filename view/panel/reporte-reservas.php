@@ -85,7 +85,7 @@
                             <li class="breadcrumb-item active">Información de todas las reservas</li>
                         </ol>
                        
-                        <!-- Start table example-->
+                        <!-- Start table example
                         <div class="card mb-4">
                             <div class="card-header">
                                 <i class="fas fa-table me-1"></i>
@@ -573,7 +573,48 @@
                                     </tbody>
                                 </table>
                             </div>
+                        </div>-->
+                        <div class="container mt-5">
+                        <div class="card">
+                            <div class="card-header">
+                                <i class="fas fa-table me-1"></i> Reservas registradas
+                            </div>
+                            <div class="card-body">
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>ID (Reserva)</th>
+                                            <th>Nombre del Equipo</th>
+                                            <th>No. Laboratorio</th>
+                                            <th>Reservado Por</th>
+                                            <th>Fecha de Reserva</th>
+                                            <th>Descripción</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <!-- EJEMPLO PARA LA TABLE DE REPORTE DE RESERVAS-->
+                                        <?php
+                                        if ($result->num_rows > 0) {
+                                            while ($row = $result->fetch_assoc()) {
+                                                echo "<tr>";
+                                                echo "<td>" . $row["id_reserva"] . "</td>";
+                                                echo "<td>" . $row["nombre_equipo"] . "</td>";
+                                                echo "<td>" . $row["no_laboratorio"] . "</td>";
+                                                echo "<td>" . $row["reservado_por"] . "</td>";
+                                                echo "<td>" . $row["fecha_reserva"] . "</td>";
+                                                echo "<td>" . $row["descripcion"] . "</td>";
+                                                echo "</tr>";
+                                            }
+                                        } else {
+                                            echo "<tr><td colspan='6'>No se encontraron reservas.</td></tr>";
+                                        }
+                                        ?>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
+                    </div>
+
                     </div>
 
                 </main>

@@ -85,6 +85,25 @@
                             <li class="breadcrumb-item active">Información general</li>
                         </ol>
 
+                        <div class="container mt-5">
+                            <div class="row">
+                                <div class="col-md-3">
+                                <div class="image-container w-50 mx-auto">
+                                        <img src="../../public/images/user.png" alt="Imagen" class="img-fluid">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <ul class="list-group">
+                                        <li class="list-group-item" id="nombre" name="nombre">Nombre: Tu Nombre</li>
+                                        <li class="list-group-item" id="apellido" name="apellido">Apellido: Tu Apellido</li>
+                                        <li class="list-group-item" id="correo" name="correo">Correo: tu_correo@example.com</li>
+                                        <li class="list-group-item" id="nivel" name="nivel">Nivel de Acceso: Administrador</li>
+                                    </ul>
+                                    <a href="?op=salir" class="btn btn-danger mt-3 " style="font-weight: bold;">Cerrar Sesión</a>
+                                </div>
+                            </div>
+                        </div>
+
                 </main>
                 <footer class="py-4 bg-light mt-auto">
                     <div class="container-fluid px-4">
