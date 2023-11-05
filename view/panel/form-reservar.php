@@ -103,11 +103,6 @@
                                     </div>
 
                                     <div class="mb-3">
-                                        <label for="nombre" class="form-label">Reservar a nombre de</label>
-                                        <input type="text" class="form-control" id="nombre" name="nombre" required>
-                                    </div>
-
-                                    <div class="mb-3">
                                         <label for="desde" class="form-label">Desde</label>
                                         <input type="datetime-local" class="form-control" id="desde" name="desde" required>
                                     </div>
