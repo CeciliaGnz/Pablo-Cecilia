@@ -8,7 +8,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Perfil de usuario</title>
+        <title>Rerservar equipo</title>
         <link href="../../public/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
         <link href="../../public/css/style.css" rel="stylesheet" />
         <!-- Scrip de iconos local-->
