@@ -1,3 +1,5 @@
+<!-- PLANTILLA EN BLANCO PARA LAS PANTALLAS-->
+
 <!DOCTYPE html>
 <html lang="en">
     <head>

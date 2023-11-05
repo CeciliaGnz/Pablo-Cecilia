@@ -8,8 +8,9 @@
 	<link rel="shortcut icon" href="public/images/utp-logo.png" type="image/x-icon">
 
 	<title>Iniciar Sesión</title>
-	<style>
 
+	<!--pasar a un css despues-->
+	<style>
 		body {
 			font-family: 'Poppins', 'Roboto', sans-serif;
 		}
@@ -30,7 +31,7 @@
 <body class="body-bg p-5">
 	<div class="container mt-3">
 		<div class="row justify-content-center">
-			<div class="col-md-6 form-container">
+			<div class="col-md-5 form-container">
 				<h2 class="text-center mb-4 mt-3">Iniciar Sesión</h2>
 				<div class="image-container w-25 mx-auto">
 					<img src="../public/images/user.png" alt="Imagen" class="img-fluid">
@@ -57,6 +58,14 @@
 				</div>
 			</div>
 		</div>
+
+		 <!-- Footer con Bootstrap -->
+		 <footer class="bg text-white text-center pt-3">
+        <div class="container">
+            <p>Integrantes: Pablo Delgado 0-000-000, Cecilia González 8-990-1469. ILS132</p>
+        </div>
+    </footer>
+
 	</div>
 </body>
 
