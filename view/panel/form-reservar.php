@@ -104,22 +104,22 @@
 
                                     <div class="mb-3">
                                         <label for="nombre" class="form-label">Reservar a nombre de</label>
-                                        <input type="text" class="form-control" id="nombre" name="nombre">
+                                        <input type="text" class="form-control" id="nombre" name="nombre" required>
                                     </div>
 
                                     <div class="mb-3">
                                         <label for="desde" class="form-label">Desde</label>
-                                        <input type="datetime-local" class="form-control" id="desde" name="desde">
+                                        <input type="datetime-local" class="form-control" id="desde" name="desde" required>
                                     </div>
 
                                     <div class="mb-3">
                                         <label for="hasta" class="form-label">Hasta</label>
-                                        <input type="datetime-local" class="form-control" id="hasta" name="hasta">
+                                        <input type="datetime-local" class="form-control" id="hasta" name="hasta" required>
                                     </div>
 
                                     <div class="mb-3">
                                         <label for="descripcion" class="form-label">Descripción</label>
-                                        <textarea class="form-control" id="descripcion" name="descripcion" rows="3"></textarea>
+                                        <textarea class="form-control" id="descripcion" name="descripcion" required rows="3"></textarea>
                                     </div>
 
                                     <button type="submit" class="btn btn-primary">Reservar equipo</button>
