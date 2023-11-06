@@ -28,7 +28,7 @@ class Usuario
 {
     try 
     {
-        $sql = "INSERT INTO usuario (Nombre,Apellido,CorreoElectronico,Contrasena,TipoUsuario) 
+        $sql = "INSERT INTO usuario (Nombre,Apellido,CorreoElectronico,Contrasena) 
                 VALUES (?, ?, ?, ?)";
 
         $this->pdo->prepare($sql)
@@ -38,7 +38,6 @@ class Usuario
                     $data->Apellido, 
                     $data->CorreoElectronico, 
                     $data->Contrasena,
-                    $data->TipoUsuario
                 )
             );
         echo "Registro exitoso.<br>";
@@ -72,3 +71,4 @@ class Usuario
 
 
 }
+
