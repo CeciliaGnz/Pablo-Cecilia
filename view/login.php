@@ -66,7 +66,7 @@
 		</div>
 
 		 <!-- Footer con Bootstrap -->
-		 <footer class="bg text-white text-center pt-3">
+		 <footer class="bg text-white text-center pt-5">
         <div class="container">
             <p>Integrantes: Pablo Delgado 8-992-2046, Cecilia González 8-990-1469. ILS132</p>
         </div>
