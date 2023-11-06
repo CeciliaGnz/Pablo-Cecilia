@@ -80,14 +80,39 @@
                 </nav>
             </div>
             <div id="layoutSidenav_content">
-                <main>
-                    <div class="container-fluid px-4">
-                        <h1 class="mt-4">Perfil de usuario</h1>
-                        <ol class="breadcrumb mb-4">
-                            <li class="breadcrumb-item active">Información general</li>
-                        </ol>
+            <main>
+                <div class="container-fluid px-4">
+                    <h1 class="mt-4">Dashboard</h1>
+                    <ol class="breadcrumb mb-4">
+                        <li class="breadcrumb-item active">Bienvenido al sistema de reserva de equipos UTP</li>
+                    </ol>
 
-                </main>
+                    <!-- Primer rectángulo -->
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title">1</h5>
+                                    <h6 class="card-subtitle mb-2 text-muted">Computadora</h6>
+                                    <img src="ruta/imagen_pc.png" class="img-fluid" alt="PC Icon">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Segundo rectángulo -->
+                        <div class="col-md-6">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title">2</h5>
+                                    <h6 class="card-subtitle mb-2 text-muted">Computadora</h6>
+                                    <img src="ruta/imagen_agenda.png" class="img-fluid" alt="Agenda Icon">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+
                 <footer class="py-4 bg-light mt-auto">
                     <div class="container-fluid px-4">
                         <div class="d-flex align-items-center justify-content-between small">
