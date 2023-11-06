@@ -1,50 +1,72 @@
 <?php
-class controller
+
+require_once 'model/usuario.php';
+
+class Controller
 {
-    public function login()
-    {
-        // Mostrar la vista de inicio de sesión
-        require_once 'app/views/login.php';
+    private $model;
+    private $resp;
+
+    public function __CONSTRUCT(){
+        $this->model = new Usuario();
     }
 
-    public function register()
-    {
-        // Mostrar la vista de registro
-        require_once '../views/register.php';
+    public function Index(){
+        require("view/login.php");
     }
 
-    public function authenticate($email, $password)
-    {
-        // Verificar las credenciales del usuario
-        $user = Usuario::findByEmail($email);
+    public function CrearUsuario(){
+        require("view/register.php");
+    }
 
-        if ($user && password_verify($password, $user['password'])) {
-            // Iniciar sesión
-            $_SESSION['user_id'] = $user['id'];
-            // Redirigir al panel de control
-            header('Location: index.php?route=dashboard');
-        } else {
-            // Mostrar mensaje de error
-            echo 'Credenciales inválidas.';
+    public function IngresarPanel(){
+        require("view/panel/form-reservar.php"); //CAMBIAR DESPUES AL DASHBOARD PARA QUE SEA LO PRIMERO QUE REDIRIGA CUANDO INICIA SESION
+
+    }
+
+    public function IngresarPerfil(){
+
+        $usuario = new Usuario();
+        $usuario = $this->model->Obtener($_SESSION['UsuarioID']);
+
+        require("view/panel/profile.php");
+    }
+
+    public function Guardar(){
+        $usuario = new Usuario();
+    
+        $usuario->Nombre = $_POST['nombre'];
+        $usuario->Apellido = $_POST['apellido'];
+        $usuario->CorreoElectronico = $_POST['email'];
+        $usuario->Contrasena = md5($_REQUEST['password1']);
+        $usuario->TipoUsuario = 2;  
+    
+        $this->resp = $this->model->Registrar($usuario);
+    
+        header('Location: ?op=crear&msg=' . $this->resp);
+    }
+
+    public function Ingresar(){
+        $ingresarUsuario = new Usuario();
+        
+        $ingresarUsuario->CorreoElectronico = $_REQUEST['correo'];  
+        $ingresarUsuario->Contrasena = md5($_REQUEST['password']);    
+
+        //Verificamos si existe en la base de datos
+        if ($resultado= $this->model->Consultar($ingresarUsuario))
+        {
+            $_SESSION["acceso"] = true;
+            $_SESSION["UsuarioID"] = $resultado->UsuarioID;
+            $_SESSION["nivel"] = $resultado->TipoUsuario;
+            $_SESSION["user"] = $resultado->Nombre." ".$resultado->Apellido;
+            header('Location: ?op=permitido');
+
+        }
+        else
+        {
+            header('Location: ?&msg=Su contraseña o usuario está incorrecto');
         }
     }
 
-    public function createUser($name, $email, $password)
-    {
-        // Crear un nuevo usuario
-        $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
-        User::create($name, $email, $hashedPassword);
-
-        // Redirigir al inicio de sesión
-        header('Location: index.php?route=login');
-    }
-
-    public function logout()
-    {
-        // Cerrar sesión
-        session_destroy();
-        // Redirigir al inicio de sesión
-        header('Location: index.php?route=login');
-    }
 }
-?>
+

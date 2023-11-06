@@ -17,7 +17,7 @@
     <body class="sb-nav-fixed">
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
             <!-- Navbar Brand-->
-            <a class="navbar-brand ps-3" href="?op=inicio">Equipos - UTP</a>
+            <a class="navbar-brand ps-3" href="?op=permitido">Equipos - UTP</a>
             <!-- Sidebar Toggle-->
             <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
             
@@ -39,27 +39,27 @@
                     <div class="sb-sidenav-menu">
                         <div class="nav">
                         <div class="sb-sidenav-menu-heading">Menú</div>
-                            <a class="nav-link" href="index.html">
+                            <a class="nav-link" href="?op=permitido">
                                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                                 Dashboard
                             </a>
 
-                            <a class="nav-link" href="index.html">
+                            <a class="nav-link" href="?op=equipos">
                                 <div class="sb-nav-link-icon"><i class="fas fa-list-alt"></i></div>
                                 Lista de equipos
                             </a>
 
-                            <a class="nav-link" href="index.html">
+                            <a class="nav-link" href="?op=reservar">
                                 <div class="sb-nav-link-icon"><i class="fas fa-desktop-alt"></i></div>
                                 Reservar equipo
                             </a>
 
-                            <a class="nav-link" href="index.html">
+                            <a class="nav-link" href="?op=reporte">
                                 <div class="sb-nav-link-icon"><i class="fas fa-tasks-alt"></i></div>
                                 Reporte de reservas
                             </a>
 
-                            <a class="nav-link" href="index.html">
+                            <a class="nav-link" href="?op=misreservas">
                                 <div class="sb-nav-link-icon"><i class="fas fa-calendar-alt"></i></div>
                                 Mis reservas
                             </a>
