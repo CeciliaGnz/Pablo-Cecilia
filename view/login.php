@@ -37,11 +37,17 @@
 					<img src="../public/images/user.png" alt="Imagen" class="img-fluid">
 				</div>
 
+				<div class="text-center">
+				<p class="text-danger">
+					<?php if (isset($_GET['msg'])) echo $_GET['msg'];?>
+				</p>
+				</div>
+
 				<div class="container">
 				<form name="formulario" method="POST" action="./?op=acceder">
 					<div class="form-group pb-3">
-						<label class="" for="email">Correo Electrónico</label>
-						<input type="email" class="form-control" id="email" autocomplete="username" placeholder="Ingresa tu correo electrónico" required>
+						<label for="email">Correo Electrónico</label>
+						<input type="email" class="form-control" id="correo" autocomplete="username" placeholder="Ingresa tu correo electrónico" required>
 					</div>
 					<div class="form-group">
 						<label for="password">Contraseña</label>
