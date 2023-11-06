@@ -20,7 +20,7 @@ class Controller
     }
 
     public function IngresarPanel(){
-        require("view/panel/form-reservar.php"); //CAMBIAR DESPUES AL DASHBOARD PARA QUE SEA LO PRIMERO QUE REDIRIGA CUANDO INICIA SESION
+        require("view/panel/dashboard.php"); //CAMBIAR DESPUES AL DASHBOARD PARA QUE SEA LO PRIMERO QUE REDIRIGA CUANDO INICIA SESION
 
     }
 
