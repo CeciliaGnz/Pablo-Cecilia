@@ -6,9 +6,10 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Perfil de usuario</title>
+        <title>Mis reservas</title>
         <link href="../../public/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
         <link href="../../public/css/style.css" rel="stylesheet" />
+        <link rel="shortcut icon" href="public/images/utp-logo.png" type="image/x-icon">
         <!-- Scrip de iconos local-->
         <script src="../../public/js/all.js" crossorigin="anonymous"></script>
     </head>

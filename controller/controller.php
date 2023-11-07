@@ -1,14 +1,17 @@
 <?php
 session_start();// Comienzo de la sesión
 require_once 'model/usuario.php';
+require_once 'model/reservar.php';
 
 class Controller
 {
     private $model;
+    private $model4;
     private $resp;
 
     public function __CONSTRUCT(){
         $this->model = new Usuario();
+        $this->model4 = new Reservar();
     }
 
     public function Index(){
@@ -27,8 +30,17 @@ class Controller
         require("view/panel/lista-equipos.php"); 
     }
     
-    public function IngresarReserva(){
-        require("view/panel/form-reservar.php"); 
+    public function ObtenerEquiposDisponibles() {
+        $pdo = Db::StartUp();
+        $sql = "SELECT PcID, Nombre FROM Computadora WHERE Estado = 'disponible'";
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function IngresarReserva() {
+        $equiposDisponibles = $this->ObtenerEquiposDisponibles();
+        require("view/panel/form-reservar.php");
     }
 
     public function IngresarVerReportes(){
@@ -44,7 +56,6 @@ class Controller
             $usuario = $this->model->Obtener($_SESSION['UsuarioID']);
             require("view/panel/profile.php");
         } else {
-            // Si no hay una sesión válida, puedes redirigir al usuario a otra página, mostrar un mensaje de error, etc.
             header('Location: ?op=error');
         }
     }
@@ -83,6 +94,33 @@ class Controller
             header('Location: ?&msg=Su contraseña o usuario está incorrecto');
         }
     }
+
+    
+
+    public function RealizarReservaForm()
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            // Obtener los datos del formulario
+            $equipo = $_POST['equipo'];
+            $desde = $_POST['desde'];
+            $hasta = $_POST['hasta'];
+            $descripcion = $_POST['descripcion'];
+            $usuarioID = $_SESSION['UsuarioID']; 
+
+            $reservar = new Reservar();
+            $resultado = $reservar->RealizarReserva($equipo, $desde, $hasta, $descripcion, $usuarioID);
+
+            if ($resultado === "Reserva exitosa.") {
+                $_SESSION['resultado_reserva'] = $resultado;
+            }
+        }
+        
+        // obtiene nuevamente la lista de equipos disponibles
+        $equiposDisponibles = $this->ObtenerEquiposDisponibles();
+
+        require 'view/panel/form-reservar.php';
+    }
+
 
 }
 

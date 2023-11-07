@@ -32,7 +32,7 @@
         clave2 = document.formulario.contrasena2.value
 
         if (clave1 != clave2){
-        alert("Las dos claves no son iguales...");
+        alert("Las contraseñas no coinciden...");
         return false;}
     } 
 
