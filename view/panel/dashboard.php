@@ -101,7 +101,7 @@ if ($_SESSION["acceso"] != true)
                                 <div class="card bg-primary text-white">
                                     <div class="row no-gutters">
                                         <div class="col-md-3 mx-auto text-center">
-                                            <img src="../assets/computer.png" class="img-fluid" alt="PC Icon">
+                                            <img src="../../public/images/pc.png" class="img-fluid" >
                                         </div>
                                         <div class="col-md-8">
                                             <div class="card-body">
@@ -118,7 +118,7 @@ if ($_SESSION["acceso"] != true)
                                 <div class="card bg-success text-white">
                                     <div class="row no-gutters">
                                         <div class="col-md-3 mx-auto text-center">
-                                            <img src="../assets/agenda.png" class="img-fluid" alt="Agenda Icon">
+                                            <img src="../../public/images/reserva.png" class="img-fluid" >
                                         </div>
                                         <div class="col-md-8">
                                             <div class="card-body">
