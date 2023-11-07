@@ -25,35 +25,35 @@ class Usuario
 
 
 	public function Registrar(usuario $data)
-{
-    try 
     {
-        $sql = "INSERT INTO usuario (Nombre,Apellido,CorreoElectronico,Contrasena) 
-                VALUES (?, ?, ?, ?)";
+        try 
+        {
+            $sql = "INSERT INTO usuario (Nombre,Apellido,CorreoElectronico,Contrasena) 
+                    VALUES (?, ?, ?, ?)";
 
-        $this->pdo->prepare($sql)
-             ->execute(
-                array( 
-                    $data->Nombre,
-                    $data->Apellido, 
-                    $data->CorreoElectronico, 
-                    $data->Contrasena,
-                )
-            );
-        echo "Registro exitoso.<br>";
-        $this->msg="Su registro se ha guardado exitosamente!&t=text-success";
-    } catch (Exception $e) 
-    {
-        if ($e->errorInfo[1] == 1062) {
-            echo "Error: El correo electrónico ya está registrado en el sistema.<br>";
-            $this->msg="Correo electrónico ya está registrado en el sistema&t=text-danger";
-        } else {
-            echo "Error al guardar los datos: " . $e->getMessage() . "<br>";
-            $this->msg="Error al guardar los datos&t=text-danger";
+            $this->pdo->prepare($sql)
+                ->execute(
+                    array( 
+                        $data->Nombre,
+                        $data->Apellido, 
+                        $data->CorreoElectronico, 
+                        $data->Contrasena
+                    )
+                );
+            echo "Registro exitoso.<br>";
+            $this->msg="Su registro se ha guardado exitosamente!&t=text-success";
+        } catch (Exception $e) 
+        {
+            if ($e->errorInfo[1] == 1062) {
+                echo "Error: El correo electrónico ya está registrado en el sistema.<br>";
+                $this->msg="Correo electrónico ya está registrado en el sistema&t=text-danger";
+            } else {
+                echo "Error al guardar los datos: " . $e->getMessage() . "<br>";
+                $this->msg="Error al guardar los datos&t=text-danger";
+            }
         }
+        return $this->msg;
     }
-    return $this->msg;
-}
 
     public function Consultar(usuario $data)
     {

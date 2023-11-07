@@ -1,5 +1,5 @@
 <?php
-
+session_start();// Comienzo de la sesión
 require_once 'model/usuario.php';
 
 class Controller
@@ -20,8 +20,23 @@ class Controller
     }
 
     public function IngresarPanel(){
-        require("view/panel/dashboard.php"); //CAMBIAR DESPUES AL DASHBOARD PARA QUE SEA LO PRIMERO QUE REDIRIGA CUANDO INICIA SESION
+        require("view/panel/dashboard.php"); 
+    }
 
+    public function IngresarEquipos(){
+        require("view/panel/lista-equipos.php"); 
+    }
+    
+    public function IngresarReserva(){
+        require("view/panel/form-reservar.php"); 
+    }
+
+    public function IngresarVerReportes(){
+        require("view/panel/reporte-reservas.php"); 
+    }
+
+    public function IngresarVerMisReservas(){
+        require("view/panel/mis-reservas.php"); 
     }
 
     public function IngresarPerfil(){
@@ -37,9 +52,8 @@ class Controller
     
         $usuario->Nombre = $_POST['nombre'];
         $usuario->Apellido = $_POST['apellido'];
-        $usuario->CorreoElectronico = $_POST['email'];
-        $usuario->Contrasena = md5($_REQUEST['password1']);
-        $usuario->TipoUsuario = 2;  
+        $usuario->CorreoElectronico = $_POST['correo'];
+        $usuario->Contrasena = md5($_REQUEST['contrasena']);
     
         $this->resp = $this->model->Registrar($usuario);
     
@@ -50,7 +64,7 @@ class Controller
         $ingresarUsuario = new Usuario();
         
         $ingresarUsuario->CorreoElectronico = $_REQUEST['correo'];  
-        $ingresarUsuario->Contrasena = md5($_REQUEST['password']);    
+        $ingresarUsuario->Contrasena = md5($_REQUEST['contrasena']);    
 
         //Verificamos si existe en la base de datos
         if ($resultado= $this->model->Consultar($ingresarUsuario))
