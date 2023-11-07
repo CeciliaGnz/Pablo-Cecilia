@@ -103,10 +103,10 @@ if ($_SESSION["acceso"] != true)
                                 </div>
                                 <div class="col-md-6">
                                     <ul class="list-group">
-                                        <li class="list-group-item" id="nombre" name="nombre">Nombre: Tu Nombre</li>
-                                        <li class="list-group-item" id="apellido" name="apellido">Apellido: Tu Apellido</li>
-                                        <li class="list-group-item" id="correo" name="correo">Correo: tu_correo@example.com</li>
-                                        <li class="list-group-item" id="nivel" name="nivel">Nivel de Acceso: Administrador</li>
+                                        <li class="list-group-item" id="nombre" name="nombre">Nombre: <?php echo $usuario->Nombre; ?></li>
+                                        <li class="list-group-item" id="apellido" name="apellido">Apellido: <?php echo $usuario->Apellido; ?></li>
+                                        <li class="list-group-item" id="correo" name="correo">Correo: <?php echo $usuario->CorreoElectronico; ?></li>
+                                        <li class="list-group-item" id="nivel" name="nivel">Nivel de Acceso: <?php echo $usuario->TipoUsuario; ?></li>
                                     </ul>
                                     <a href="?op=salir" class="btn btn-danger mt-3 " style="font-weight: bold;">Cerrar Sesión</a>
                                 </div>

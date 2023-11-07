@@ -40,11 +40,13 @@ class Controller
     }
 
     public function IngresarPerfil(){
-
-        $usuario = new Usuario();
-        $usuario = $this->model->Obtener($_SESSION['UsuarioID']);
-
-        require("view/panel/profile.php");
+        if(isset($_SESSION['UsuarioID'])) {
+            $usuario = $this->model->Obtener($_SESSION['UsuarioID']);
+            require("view/panel/profile.php");
+        } else {
+            // Si no hay una sesión válida, puedes redirigir al usuario a otra página, mostrar un mensaje de error, etc.
+            header('Location: ?op=error');
+        }
     }
 
     public function Guardar(){
