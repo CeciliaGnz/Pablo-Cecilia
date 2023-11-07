@@ -18,6 +18,7 @@ if ($_SESSION["acceso"] != true)
         <title>Perfil de usuario</title>
         <link href="../../public/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
         <link href="../../public/css/style.css" rel="stylesheet" />
+        <link rel="shortcut icon" href="public/images/utp-logo.png" type="image/x-icon">
         <!-- Scrip de iconos local-->
         <script src="../../public/js/all.js" crossorigin="anonymous"></script>
     </head>
