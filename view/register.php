@@ -25,6 +25,18 @@
 		}
 	</style>
 
+<script>
+    function ComprobarClave(){
+        clave1 = document.formulario.contrasena.value
+        clave2 = document.formulario.contrasena2.value
+
+        if (clave1 != clave2){
+        alert("Las dos claves no son iguales...");
+        return false;}
+    } 
+
+</script>
+
 <body class="body-bg p-3">
     <div class="container mt-5">
         <div class="row">
@@ -33,8 +45,14 @@
                     <div class="card-header">
                     <h2 class="text-center mb-4 mt-3">Registro de Usuario</h2>
                     </div>
+
                     <div class="card-body">
-                        <form action="procesar_registro.php" method="POST">
+                        <form name="formulario" method="POST" action="./?op=registrar" onSubmit="return ComprobarClave()">
+                            
+                        <div class="text-center pt-4">
+                        <p class="<?php if (isset ($_GET['msg'])) echo $_GET['t'];?>"> <?php if (isset ($_GET['msg'])) echo $_GET['msg'];?> </p>
+                        </div>
+
                             <div class="form-group">
                                 <label for="nombre">Nombre</label>
                                 <input type="text" class="form-control" id="nombre" name="nombre" required>
@@ -51,8 +69,13 @@
                                 <label for="contrasena">Contraseña</label>
                                 <input type="password" class="form-control" id="contrasena" name="contrasena" required>
                             </div>
+                            <div class="form-group">
+                                <label for="contrasena">Confirmar contraseña</label>
+                                <input type="password" class="form-control" id="contrasena2" name="contrasena2" required>
+                            </div>
+
                             <div class="text-center pt-3"> <!-- Envolvemos el botón en su propia <div> -->
-                                <button type="submit" class="btn btn-primary">Registrarse</button>
+                                <button type="submit" class="btn btn-primary" onClick="comprobarClave()" >Registrarse</button>
                             </div>
 
                             <div class="mt-3 text-center">

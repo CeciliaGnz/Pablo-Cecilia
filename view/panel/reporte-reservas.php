@@ -1,3 +1,12 @@
+<?php
+
+if ($_SESSION["acceso"] != true)
+{
+    header('Location: ?op=error');
+}
+
+
+?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -621,7 +630,7 @@
                 <footer class="py-4 bg-light mt-auto">
                     <div class="container-fluid px-4">
                         <div class="d-flex align-items-center justify-content-between small">
-                            <div class="text-muted">Copyright &copy; Integrantes: Pablo Delgado 0-000-000, Cecilia González 8-990-1469. ILS132</div>
+                            <div class="text-muted">Copyright &copy; Integrantes: Pablo Delgado 8-992-2046, Cecilia González 8-990-1469. ILS132</div>
                         </div>
                     </div>
                 </footer>

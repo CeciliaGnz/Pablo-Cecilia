@@ -36,32 +36,35 @@
 				<div class="image-container w-25 mx-auto">
 					<img src="../public/images/user.png" alt="Imagen" class="img-fluid">
 				</div>
-
+				
+				<div class="container">
+				<form method="POST" action="./?op=acceder">	
 				<div class="text-center">
 				<p class="text-danger">
 					<?php if (isset($_GET['msg'])) echo $_GET['msg'];?>
 				</p>
 				</div>
-
-				<div class="container">
-				<form name="formulario" method="POST" action="./?op=acceder">
+				
 					<div class="form-group pb-3">
 						<label for="email">Correo Electrónico</label>
-						<input type="email" class="form-control" id="correo" autocomplete="username" placeholder="Ingresa tu correo electrónico" required>
+						<input type="email" class="form-control" id="correo" name="correo" autocomplete="username" placeholder="Ingresa tu correo electrónico" required>
 					</div>
 					<div class="form-group">
 						<label for="password">Contraseña</label>
-						<input type="password" class="form-control" id="password" placeholder="Ingresa tu contraseña" required>
+						<input type="password" class="form-control" id="password" name="contrasena" placeholder="Ingresa tu contraseña" required>
 					</div>
 					<div class="text-center pt-3"> <!-- Envolvemos el botón en su propia <div> -->
                         <button type="submit" class="btn btn-primary">Iniciar Sesión</button>
                     </div>
+
+					<div class="mt-3 text-center">
+					<p>¿No tienes una cuenta? <a href="?op=crear">Regístrate aquí</a></p>
+				</div>
+
 				</form>
 				</div>
 
-				<div class="mt-3 text-center">
-					<p>¿No tienes una cuenta? <a href="?op=registrarse">Regístrate aquí</a></p>
-				</div>
+				
 			</div>
 		</div>
 

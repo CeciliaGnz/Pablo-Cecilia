@@ -8,8 +8,7 @@ if (isset($_GET['op'])){
 
     $opcion=$_GET['op'];
 
-    if ($opcion=="crear")
-    {
+    if ($opcion=="crear"){
         $controller->CrearUsuario();
     }
     else if ($opcion=="registrar"){
@@ -24,6 +23,19 @@ if (isset($_GET['op'])){
     elseif ($opcion=="perfil"){
         $controller->IngresarPerfil();
     }
+    elseif ($opcion=="equipos"){
+        $controller->IngresarEquipos();
+    }
+    elseif ($opcion=="reservar"){
+        $controller->IngresarReserva();
+    }
+    elseif ($opcion=="reporte"){
+        $controller->IngresarVerReportes();
+    }
+    elseif ($opcion=="misreservas"){
+        $controller->IngresarVerMisReservas();
+    }
+    
     
     elseif ($opcion=="salir"){
         session_destroy();
