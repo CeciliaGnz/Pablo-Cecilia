@@ -80,7 +80,7 @@
                             </div>
 
                             <div class="mt-3 text-center">
-                                <p>Ya tienes una cuenta? <a href="?op=acceder">Iniciar sesión</a></p>
+                                <p>Ya tienes una cuenta? <a href="./">Iniciar sesión</a></p>
                             </div>
                         </form>
                     </div>
