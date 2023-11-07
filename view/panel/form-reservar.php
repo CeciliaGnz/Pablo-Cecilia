@@ -118,7 +118,7 @@ if ($_SESSION["acceso"] != true)
 
                                     <div class="mb-3">
                                         <label for="hasta" class="form-label">Hasta</label>
-                                        <input type="datetime-local" class="form-control" id="hasta" name="hasta" required>
+                                        <input type="time" class="form-control" id="hasta" name="hasta" required>
                                     </div>
 
                                     <div class="mb-3">

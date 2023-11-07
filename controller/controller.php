@@ -2,6 +2,7 @@
 session_start();// Comienzo de la sesión
 require_once 'model/usuario.php';
 require_once 'model/reservar.php';
+require_once 'model/reporte.php';
 
 class Controller
 {
@@ -23,7 +24,10 @@ class Controller
     }
 
     public function IngresarPanel(){
-        require("view/panel/dashboard.php"); 
+        $reporte = new Reporte();
+        $totalReservas = $reporte->obtenerTotalReservas(); 
+        require("view/panel/dashboard.php");
+        
     }
 
     public function IngresarEquipos(){
@@ -44,6 +48,8 @@ class Controller
     }
 
     public function IngresarVerReportes(){
+        $reporte = new Reporte();
+        $result = $reporte->ObtenerReporteReservas();
         require("view/panel/reporte-reservas.php"); 
     }
 
