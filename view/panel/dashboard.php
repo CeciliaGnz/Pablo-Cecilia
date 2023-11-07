@@ -98,27 +98,32 @@ if ($_SESSION["acceso"] != true)
                         <div class="row">
                             <!-- Primer rectángulo -->
                             <div class="col-md-6">
-                                <div class="card bg-primary text-white">
-                                    <div class="row no-gutters">
-                                        <div class="col-md-3 mx-auto text-center">
-                                            <img src="../../public/images/pc.png" class="img-fluid" >
-                                        </div>
-                                        <div class="col-md-8">
-                                            <div class="card-body">
-                                                <h5 class="card-title">00</h5>
-                                                <h6 class="card-subtitle mb-2 text-light">Total de equipos</h6>
-                                            </div>
+                            <div class="card bg-primary text-white">
+                                <div class="row no-gutters">
+                                    <div class="col-md-3 mx-auto text-center">
+                                    <div class="image-container w-75 mx-auto">
+                                        <img src="../../public/images/pc.png" class="img-fluid d-block mt-3 mb-3">
+                                    </div>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="card-body">
+                                            <h5 class="card-title">00</h5>
+                                            <h6 class="card-subtitle mb-2 text-light">Total de equipos</h6>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                        </div>
+
 
                             <!-- Segundo rectángulo -->
                             <div class="col-md-6">
                                 <div class="card bg-success text-white">
                                     <div class="row no-gutters">
                                         <div class="col-md-3 mx-auto text-center">
-                                            <img src="../../public/images/reserva.png" class="img-fluid" >
+                                            <div class="image-container w-75 mx-auto">
+                                            <img src="../../public/images/reserva.png" class="img-fluid d-block mt-3 mb-3" >
+                                        </div>
                                         </div>
                                         <div class="col-md-8">
                                             <div class="card-body">

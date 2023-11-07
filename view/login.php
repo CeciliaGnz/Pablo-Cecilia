@@ -39,6 +39,7 @@
 				
 				<div class="container">
 				<form method="POST" action="./?op=acceder">	
+
 				<div class="text-center">
 				<p class="text-danger">
 					<?php if (isset($_GET['msg'])) echo $_GET['msg'];?>
@@ -57,7 +58,7 @@
                         <button type="submit" class="btn btn-primary">Iniciar Sesión</button>
                     </div>
 
-					<div class="mt-3 text-center">
+					<div class="mt-4 text-center">
 					<p>¿No tienes una cuenta? <a href="?op=crear">Regístrate aquí</a></p>
 				</div>
 
@@ -69,7 +70,7 @@
 		</div>
 
 		 <!-- Footer con Bootstrap -->
-		 <footer class="bg text-white text-center pt-5">
+		 <footer class="bg text-white text-center p-5">
         <div class="container">
             <p>Integrantes: Pablo Delgado 8-992-2046, Cecilia González 8-990-1469. ILS132</p>
         </div>
