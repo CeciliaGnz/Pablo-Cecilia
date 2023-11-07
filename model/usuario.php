@@ -68,6 +68,19 @@ class Usuario
         }
     }
 
+    public function Obtener($id)
+    {
+        try 
+        {
+            $stm = $this->pdo
+                    ->prepare("SELECT * FROM usuario WHERE UsuarioID = ?");
+            $stm->execute(array($id));
+            return $stm->fetch(PDO::FETCH_OBJ);
+        } catch (Exception $e) 
+        {
+            die($e->getMessage());
+        }
+    }
 
 
 }

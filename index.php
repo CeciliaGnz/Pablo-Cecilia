@@ -35,8 +35,6 @@ if (isset($_GET['op'])){
     elseif ($opcion=="misreservas"){
         $controller->IngresarVerMisReservas();
     }
-    
-    
     elseif ($opcion=="salir"){
         session_destroy();
         $controller->Index();
