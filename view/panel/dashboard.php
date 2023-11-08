@@ -17,10 +17,10 @@ if ($_SESSION["acceso"] != true)
         <meta name="description" content="" />
         <meta name="author" content="" />
         <title>Dashboard</title>
-        <link href="../../public/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
-        <link href="../../public/css/style.css" rel="stylesheet" />
+        <link href="./public/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+        <link href="./public/css/style.css" rel="stylesheet" />
         <!-- Scrip de iconos local-->
-        <script src="../../public/js/all.js" crossorigin="anonymous"></script>
+        <script src="../public/js/all.js" crossorigin="anonymous"></script>
     </head>
     <body class="sb-nav-fixed">
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
@@ -101,7 +101,7 @@ if ($_SESSION["acceso"] != true)
                                 <div class="card bg-primary text-white">
                                     <div class="row no-gutters">
                                         <div class="col-md-3 mx-auto text-center">
-                                            <img src="../../public/images/pc.png" class="img-fluid" >
+                                            <img src="./public/images/pc.png" class="img-fluid" >
                                         </div>
                                         <div class="col-md-8">
                                             <div class="card-body">
@@ -118,7 +118,7 @@ if ($_SESSION["acceso"] != true)
                                 <div class="card bg-success text-white">
                                     <div class="row no-gutters">
                                         <div class="col-md-3 mx-auto text-center">
-                                            <img src="../../public/images/reserva.png" class="img-fluid" >
+                                            <img src="./public/images/reserva.png" class="img-fluid" >
                                         </div>
                                         <div class="col-md-8">
                                             <div class="card-body">

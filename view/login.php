@@ -4,7 +4,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-	<link rel="stylesheet" href="../public/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" href="public/bootstrap/css/bootstrap.min.css">
 	<link rel="shortcut icon" href="public/images/utp-logo.png" type="image/x-icon">
 
 	<title>Iniciar Sesión</title>
@@ -34,7 +34,7 @@
 			<div class="col-md-5 form-container">
 				<h2 class="text-center mb-4 mt-3">Iniciar Sesión</h2>
 				<div class="image-container w-25 mx-auto">
-					<img src="../public/images/user.png" alt="Imagen" class="img-fluid">
+					<img src="public/images/user.png" alt="Imagen" class="img-fluid">
 				</div>
 				
 				<div class="container">

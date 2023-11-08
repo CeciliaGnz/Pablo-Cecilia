@@ -7,10 +7,10 @@
         <meta name="description" content="" />
         <meta name="author" content="" />
         <title>Perfil de usuario</title>
-        <link href="../../public/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
-        <link href="../../public/css/style.css" rel="stylesheet" />
+        <link href="./public/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+        <link href="./public/css/style.css" rel="stylesheet" />
         <!-- Scrip de iconos local-->
-        <script src="../../public/js/all.js" crossorigin="anonymous"></script>
+        <script src="./public/js/all.js" crossorigin="anonymous"></script>
     </head>
     <body class="sb-nav-fixed">
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
@@ -85,6 +85,38 @@
                         <ol class="breadcrumb mb-4">
                             <li class="breadcrumb-item active">Listado de Computadoras de la Universidad</li>
                         </ol>
+                       <!-- Botón para abrir la ventana emergente -->
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#agregarComputadoraModal" action="../index.php?action=obtenerLabs">
+                        Agregar Computadora
+                        </button>
+
+                        <!-- Ventana emergente (modal) -->
+                        <div class="modal fade" id="agregarComputadoraModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Agregar Computadora</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <!-- Formulario para agregar una computadora -->
+                                <form method="post" action="index.php?action=agregarComputadora">
+                                <!-- Campos para ingresar los datos de la computadora (nombre, laboratorio, descripción, estado) -->
+                                <div class="mb-3">
+                                    <input type="text" name="nombre" class="form-control" placeholder="Inserte el nombre de la computadora">
+                                </div>
+                                <div class="mb-3">
+                                    <input type="text" name="laboratorio" class="form-control" placeholder="Inserte el laboratorio que pertenece ejm: 4-401">
+                                </div>
+                                <div class="mb-3">
+                                    <textarea name="descripcion" class="form-control" placeholder="Inserte una breve descripción de los componentes"></textarea>
+                                </div>
+                                <button type="submit" class="btn btn-primary">Agregar Computadora</button>
+                                </form>
+                            </div>
+                            </div>
+                        </div>
+                        </div>
 
                         <div class="container mt-5">
                             <table class="table">
@@ -125,9 +157,26 @@
                 </footer>
             </div>
         </div>
-        <script src="../../public/bootstrap/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-        <script src="../../public/js/script.js"></script>
-        <script src="../../public/js/simple-datatables.min.js" crossorigin="anonymous"></script>
-        <script src="../../public/js/datatables-simple-demo.js"></script>
+        <script>
+            function obtenerLaboratorios() {
+                // Realiza una solicitud AJAX para obtener los laboratorios
+                $.ajax({
+                    type: 'GET',
+                    url: 'index.php?../?op=ObtenerLaboratorios', // Asegúrate de que esta URL sea correcta
+                    success: function (laboratorios) {
+                        // Actualiza el select con los laboratorios obtenidos
+                        var laboratorioSelect = $('#laboratorioSelect');
+                        laboratorioSelect.empty();
+                        laboratorios.forEach(function (laboratorio) {
+                            laboratorioSelect.append('<option value="' + laboratorio.Lab_No + '">' + laboratorio.Lab_No + '</option>');
+                        });
+                    }
+                });
+            }
+        </script>
+        <script src="./public/bootstrap/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+        <script src="./public/js/script.js"></script>
+        <script src="./public/js/simple-datatables.min.js" crossorigin="anonymous"></script>
+        <script src="./public/js/datatables-simple-demo.js"></script>
     </body>
 </html>

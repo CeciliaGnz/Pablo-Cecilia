@@ -18,10 +18,10 @@ if ($_SESSION["acceso"] != true)
         <meta name="description" content="" />
         <meta name="author" content="" />
         <title>Rerservar equipo</title>
-        <link href="../../public/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
-        <link href="../../public/css/style.css" rel="stylesheet" />
+        <link href="./public/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+        <link href="./public/css/style.css" rel="stylesheet" />
         <!-- Scrip de iconos local-->
-        <script src="../../public/js/all.js" crossorigin="anonymous"></script>
+        <script src="./public/js/all.js" crossorigin="anonymous"></script>
     </head>
     <body class="sb-nav-fixed">
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">

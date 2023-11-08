@@ -1,14 +1,19 @@
 <?php
 session_start();// Comienzo de la sesión
 require_once 'model/usuario.php';
-
+require_once 'model/computadoras.php';
+require_once 'model/laboratorio.php';
 class Controller
 {
-    private $model;
+    private $user;
+    private $pc;
+    private $lab;
     private $resp;
 
+   
     public function __CONSTRUCT(){
-        $this->model = new Usuario();
+        $this->user = new Usuario();
+        $this->pc = new Computadoras();
     }
 
     public function Index(){
@@ -25,6 +30,7 @@ class Controller
 
     public function IngresarEquipos(){
         require("view/panel/lista-equipos.php"); 
+        
     }
     
     public function IngresarReserva(){
@@ -41,7 +47,7 @@ class Controller
 
     public function IngresarPerfil(){
         if(isset($_SESSION['UsuarioID'])) {
-            $usuario = $this->model->Obtener($_SESSION['UsuarioID']);
+            $usuario = $this->user->Obtener($_SESSION['UsuarioID']);
             require("view/panel/profile.php");
         } else {
             // Si no hay una sesión válida, puedes redirigir al usuario a otra página, mostrar un mensaje de error, etc.
@@ -57,7 +63,7 @@ class Controller
         $usuario->CorreoElectronico = $_POST['correo'];
         $usuario->Contrasena = md5($_REQUEST['contrasena']);
     
-        $this->resp = $this->model->Registrar($usuario);
+        $this->resp = $this->user->Registrar($usuario);
     
         header('Location: ?op=crear&msg=' . $this->resp);
     }
@@ -69,7 +75,7 @@ class Controller
         $ingresarUsuario->Contrasena = md5($_REQUEST['contrasena']);    
 
         //Verificamos si existe en la base de datos
-        if ($resultado= $this->model->Consultar($ingresarUsuario))
+        if ($resultado= $this->user->Consultar($ingresarUsuario))
         {
             $_SESSION["acceso"] = true;
             $_SESSION["UsuarioID"] = $resultado->UsuarioID;
@@ -84,5 +90,7 @@ class Controller
         }
     }
 
+    
+   
 }
-
+   ?>
