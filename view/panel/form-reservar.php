@@ -1,4 +1,3 @@
-<!-- PLANTILLA EN BLANCO PARA LAS PANTALLAS-->
 <?php
 
 if ($_SESSION["acceso"] != true)
@@ -17,9 +16,10 @@ if ($_SESSION["acceso"] != true)
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Rerservar equipo</title>
+        <title>Reservar equipo</title>
         <link href="./public/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
         <link href="./public/css/style.css" rel="stylesheet" />
+        <link rel="shortcut icon" href="public/images/utp-logo.png" type="image/x-icon">
         <!-- Scrip de iconos local-->
         <script src="./public/js/all.js" crossorigin="anonymous"></script>
     </head>
@@ -101,14 +101,14 @@ if ($_SESSION["acceso"] != true)
                         <div class="container">
                         <div class="row">
                             <div class="col-lg-8">
-                                <form>
+                                <form method="POST" action="./?op=reservarequipo">
                                     <div class="mb-3">
                                         <label for="equipo" class="form-label">Seleccionar equipo</label>
                                         <select class="form-select" id="equipo" name="equipo">
-                                            <option value="equipo1">Equipo 1</option>
-                                            <option value="equipo2">Equipo 2</option>
-                                            <option value="equipo3">Equipo 3</option>
-                                        </select>
+                                        <?php foreach ($equiposDisponibles as $equipo) : ?>
+                                            <option value="<?php echo $equipo['PcID']; ?>"><?php echo $equipo['Nombre']; ?></option>
+                                        <?php endforeach; ?>
+                                    </select>
                                     </div>
 
                                     <div class="mb-3">
@@ -118,7 +118,7 @@ if ($_SESSION["acceso"] != true)
 
                                     <div class="mb-3">
                                         <label for="hasta" class="form-label">Hasta</label>
-                                        <input type="datetime-local" class="form-control" id="hasta" name="hasta" required>
+                                        <input type="time" class="form-control" id="hasta" name="hasta" required>
                                     </div>
 
                                     <div class="mb-3">
@@ -128,6 +128,29 @@ if ($_SESSION["acceso"] != true)
 
                                     <button type="submit" class="btn btn-primary">Reservar equipo</button>
                                 </form>
+
+                                <!-- Agregar un div para mostrar notificaciones -->
+                                    
+
+                                <script>
+                                document.addEventListener("DOMContentLoaded", function() {
+                                <?php if ($resultado === "Reserva exitosa.") : ?>
+                                // Verificar si la condición se cumple
+                                console.log("La condición se cumple");
+                                // Mostrar una alerta
+                                alert("Reserva exitosa");
+                                // Limpiar los campos del formulario (opcional)
+                                document.getElementById('desde').value = '';
+                                document.getElementById('hasta').value = '';
+                                document.getElementById('descripcion').value = '';
+                                <?php endif; ?>
+                            });
+
+                                </script>
+
+
+
+
                             </div>
                         </div>
                     </div>

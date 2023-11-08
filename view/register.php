@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registro de Usuario</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../public/bootstrap/css/bootstrap.min.css">
+	<link rel="shortcut icon" href="public/images/utp-logo.png" type="image/x-icon">
 </head>
 
 <!--pasar a un css despues-->
@@ -31,7 +32,7 @@
         clave2 = document.formulario.contrasena2.value
 
         if (clave1 != clave2){
-        alert("Las dos claves no son iguales...");
+        alert("Las contraseñas no coinciden...");
         return false;}
     } 
 
@@ -46,10 +47,10 @@
                     <h2 class="text-center mb-4 mt-3">Registro de Usuario</h2>
                     </div>
 
-                    <div class="card-body">
+                    <div class="card-body m-3">
                         <form name="formulario" method="POST" action="./?op=registrar" onSubmit="return ComprobarClave()">
                             
-                        <div class="text-center pt-4">
+                        <div class="text-center pt-3">
                         <p class="<?php if (isset ($_GET['msg'])) echo $_GET['t'];?>"> <?php if (isset ($_GET['msg'])) echo $_GET['msg'];?> </p>
                         </div>
 
@@ -74,12 +75,12 @@
                                 <input type="password" class="form-control" id="contrasena2" name="contrasena2" required>
                             </div>
 
-                            <div class="text-center pt-3"> <!-- Envolvemos el botón en su propia <div> -->
+                            <div class="text-center pt-4"> <!-- Envolvemos el botón en su propia <div> -->
                                 <button type="submit" class="btn btn-primary" onClick="comprobarClave()" >Registrarse</button>
                             </div>
 
-                            <div class="mt-3 text-center">
-                                <p>Ya tienes una cuenta? <a href="?op=acceder">Iniciar sesión</a></p>
+                            <div class="mt-4 text-center">
+                                <p>Ya tienes una cuenta? <a href="./">Iniciar sesión</a></p>
                             </div>
                         </form>
                     </div>

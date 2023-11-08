@@ -35,6 +35,9 @@ if (isset($_GET['op'])){
     elseif ($opcion=="misreservas"){
         $controller->IngresarVerMisReservas();
     }
+    elseif ($opcion=="reservarequipo"){
+        $controller->RealizarReservaForm();
+    }
     elseif ($opcion=="salir"){
         session_destroy();
         $controller->Index();
