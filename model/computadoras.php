@@ -23,19 +23,13 @@ Class Computadoras {
 
     public function obtenerComputadoras() {
         try {
-            // Consulta SQL para obtener todas las computadoras
             $query = "SELECT id, nombre, laboratorio FROM computadoras";
             $stmt = $this->pdo->prepare($query);
-
             $computadoras = $stmt->fetchAll(PDO::FETCH_OBJ);
             return $computadoras;
         } catch (PDOException $e) {
-            // Manejar cualquier error de la base de datos aquí
-            return array(); // Devuelve un array vacío si hay un error
+            return array(); 
         }
-    }
-    
-
-   
+    } 
 }
 ?>

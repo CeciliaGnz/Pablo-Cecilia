@@ -157,23 +157,6 @@
                 </footer>
             </div>
         </div>
-        <script>
-            function obtenerLaboratorios() {
-                // Realiza una solicitud AJAX para obtener los laboratorios
-                $.ajax({
-                    type: 'GET',
-                    url: 'index.php?../?op=ObtenerLaboratorios', // Asegúrate de que esta URL sea correcta
-                    success: function (laboratorios) {
-                        // Actualiza el select con los laboratorios obtenidos
-                        var laboratorioSelect = $('#laboratorioSelect');
-                        laboratorioSelect.empty();
-                        laboratorios.forEach(function (laboratorio) {
-                            laboratorioSelect.append('<option value="' + laboratorio.Lab_No + '">' + laboratorio.Lab_No + '</option>');
-                        });
-                    }
-                });
-            }
-        </script>
         <script src="./public/bootstrap/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="./public/js/script.js"></script>
         <script src="./public/js/simple-datatables.min.js" crossorigin="anonymous"></script>
