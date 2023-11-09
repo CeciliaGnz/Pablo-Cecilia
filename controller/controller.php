@@ -55,9 +55,14 @@ class Controller
         require("view/panel/reporte-reservas.php"); 
     }
 
-    public function IngresarVerMisReservas(){
-        require("view/panel/mis-reservas.php"); 
+    public function IngresarVerMisReservas()
+    {
+        $usuarioID = $_SESSION['UsuarioID'];
+        $misReservas = $this->modelreservar->ObtenerMisReservas($usuarioID);
+
+        require("view/panel/mis-reservas.php");
     }
+
 
     public function IngresarPerfil(){
         if(isset($_SESSION['UsuarioID'])) {

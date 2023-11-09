@@ -121,7 +121,7 @@ if ($_SESSION["acceso"] != true)
                                             echo "<td class='text-center small'>" . $row["nombre_equipo"] . "</td>";
                                             echo "<td class='text-center small'>" . $row["no_laboratorio"] . "</td>";
                                             echo "<td class='text-center small'>" . $row["reservado_por"] . "</td>";
-                                            echo "<td class='justify-content-center small'>" . " Fecha: ". $row["fecha_reserva"] . "<br>Hora Inicial: " . $row["hora_inicial"] . "<br> Hora Final: " . $row["hora_final"] . "</td>";
+                                            echo "<td class='justify-content-center small'>" . " Fecha: ". $row["fecha_reserva"] . "<br>Hora:  " . $row["hora_inicial"] . " - " . $row["hora_final"] . "</td>";
                                             echo "<td class='justify-content-center small'>" . $row["descripcion"] . "</td>";
                                             echo "</tr>";
                                         }
