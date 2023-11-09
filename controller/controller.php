@@ -2,17 +2,19 @@
 session_start();// Comienzo de la sesión
 require_once 'model/usuario.php';
 require_once 'model/reservar.php';
+require_once 'model/computadoras.php';
 require_once 'model/reporte.php';
+require_once 'model/laboratorio.php';
 
 class Controller
 {
-    private $usuario;
+    private $model;
     private $model4;
     private $resp;
 
    
     public function __CONSTRUCT(){
-        $this->usuario = new Usuario();
+        $this->model = new Usuario();
         $this->model4 = new Reservar();
     }
 
@@ -32,20 +34,18 @@ class Controller
     }
 
     public function IngresarEquipos(){
+        $pc  = new Computadoras();
+        $datos = $pc->mostrarComputadoras();
+        $obtenerNombresLab = new Laboratorio();
+        $nombreLab = $obtenerNombresLab->mostrarLaboratorios();
         require("view/panel/lista-equipos.php"); 
         
     }
     
-    public function ObtenerEquiposDisponibles() {
-        $pdo = Db::StartUp();
-        $sql = "SELECT PcID, Nombre FROM Computadora WHERE Estado = 'disponible'";
-        $stmt = $pdo->prepare($sql);
-        $stmt->execute();
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
-    }
 
     public function IngresarReserva() {
-        $equiposDisponibles = $this->ObtenerEquiposDisponibles();
+        $pc = new Computadoras();
+        $equiposDisponibles = $pc->ObtenerEquiposDisponibles();
         require("view/panel/form-reservar.php");
     }
 
@@ -61,7 +61,7 @@ class Controller
 
     public function IngresarPerfil(){
         if(isset($_SESSION['UsuarioID'])) {
-            $usuario = $this->usuario->Obtener($_SESSION['UsuarioID']);
+            $usuario = $this->model->Obtener($_SESSION['UsuarioID']);
             require("view/panel/profile.php");
         } else {
             header('Location: ?op=error');
@@ -76,7 +76,7 @@ class Controller
         $usuario->CorreoElectronico = $_POST['correo'];
         $usuario->Contrasena = md5($_REQUEST['contrasena']);
     
-        $this->resp = $this->usuario->Registrar($usuario);
+        $this->resp = $this->model->Registrar($usuario);
     
         header('Location: ?op=crear&msg=' . $this->resp);
     }
@@ -88,7 +88,7 @@ class Controller
         $ingresarUsuario->Contrasena = md5($_REQUEST['contrasena']);    
 
         //Verificamos si existe en la base de datos
-        if ($resultado= $this->usuario->Consultar($ingresarUsuario))
+        if ($resultado= $this->model->Consultar($ingresarUsuario))
         {
             $_SESSION["acceso"] = true;
             $_SESSION["UsuarioID"] = $resultado->UsuarioID;
@@ -103,10 +103,10 @@ class Controller
         }
     }
 
-    
-
     public function RealizarReservaForm()
     {
+
+        $pc = new Computadoras(); 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // Obtener los datos del formulario
             $equipo = $_POST['equipo'];
@@ -124,11 +124,12 @@ class Controller
         }
         
         // obtiene nuevamente la lista de equipos disponibles
-        $equiposDisponibles = $this->ObtenerEquiposDisponibles();
+        $equiposDisponibles = $pc->ObtenerEquiposDisponibles();
 
         require 'view/panel/form-reservar.php';
     }
 
+   
 
 }
    ?>

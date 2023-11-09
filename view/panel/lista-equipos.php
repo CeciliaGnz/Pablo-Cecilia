@@ -87,9 +87,9 @@
                             <li class="breadcrumb-item active">Listado de Computadoras de la Universidad</li>
                         </ol>
                        <!-- Botón para abrir la ventana emergente -->
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#agregarComputadoraModal" action="../index.php?action=obtenerLabs">
+                       <a href="index.php?op=nombresLab" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#agregarComputadoraModal">
                         Agregar Computadora
-                        </button>
+                        </a>
 
                         <!-- Ventana emergente (modal) -->
                         <div class="modal fade" id="agregarComputadoraModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -107,10 +107,20 @@
                                     <input type="text" name="nombre" class="form-control" placeholder="Inserte el nombre de la computadora">
                                 </div>
                                 <div class="mb-3">
-                                    <input type="text" name="laboratorio" class="form-control" placeholder="Inserte el laboratorio que pertenece ejm: 4-401">
-                                </div>
-                                <div class="mb-3">
-                                    <textarea name="descripcion" class="form-control" placeholder="Inserte una breve descripción de los componentes"></textarea>
+                                <select class="form-control" name="cars" id="cars">
+                                    <option value="def" disable selected>Selecciona un laboratorio</option>
+                                    <?php 
+                                    foreach ($nombreLab as $row){
+                                        echo '<option value="'.$row["Lab_No"].'" disable selected>'.$row["Lab_No"].'</option>';
+                                        echo '<option value="volvo">5-509</option>';
+                                    }
+                                    ?>
+                                    
+
+                                    <option value="saab">6-609</option>
+                                    
+                                </select>
+
                                 </div>
                                 <button type="submit" class="btn btn-primary">Agregar Computadora</button>
                                 </form>
@@ -125,7 +135,8 @@
                                     <tr>
                                         <th>Identificador</th>
                                         <th>Nombre</th>
-                                        <th>No.Laboratorio </th>
+                                        <th>No.Laboratorio</th>
+                                        <th>Estado</th>
                                         <th>Acciones</th>
                                     </tr>
                                 </thead>
@@ -134,6 +145,7 @@
                                         <td>1</td>
                                         <td>Computadora 1</td>
                                         <td>4-405</td>
+                                        <td>Disponible</td>
                                         <td>
                                             <button type="button" class="btn btn-danger btn-sm">
                                                 <i class="fas fa-trash"></i>
@@ -143,7 +155,25 @@
                                             </button>
                                         </td>
                                     </tr>
-                                
+                                    <!-- FUNCIONALIADAD A CADA BOTON  -->
+                                    <?php
+                                        foreach ($datos as $campo) {
+                                            echo "<tr>";
+                                            echo "<td>".$campo["PcID"]."</td>";
+                                            echo "<td>".$campo["Nombre"]."</td>";
+                                            echo "<td>".$campo["Lab_No"] . "</td>";
+                                            echo "<td>".$campo["Estado"] . "</td>";
+                                            echo '<td>
+                                            <button type="button" class="btn btn-danger btn-sm">
+                                                <i class="fas fa-trash"></i>
+                                            </button>
+                                            <button type="button" class="btn btn-primary btn-sm">
+                                                <i class="fas fa-edit"></i>
+                                            </button>
+                                        </td>';
+                                            echo "</tr>";
+                                        }   
+                                    ?>
                                 </tbody>
                             </table>
                         </div>
