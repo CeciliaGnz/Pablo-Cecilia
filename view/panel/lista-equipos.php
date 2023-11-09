@@ -110,39 +110,6 @@
                     
                 ?>
 
-                <!-- VENTANAS EMERGENTES -->
-
-                    <!-- Modal para editar computadora -->
-                    <div class="modal fade" id="editarComputadoraModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">Editar Computadora</h5>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body">
-                                    <form method="POST" action="./?op=guardarEdicionComputadora">
-                                        <div class="mb-3">
-                                            <label for="editNombrePC" class="form-label">Nombre de la computadora</label>
-                                            <input type="text" class="form-control" id="editNombrePC" name="editNombrePC" value="<?php echo $nombreComputadora; ?>" required>
-                                        </div>
-                                        <div class="mb-3">
-                                            <label for="editLab" class="form-label">Laboratorio</label>
-                                            <input type="text" class="form-control" id="editLab" name="editLab" value="<?php echo $nombreLaboratorio; ?>" required>
-                                        </div>
-                                        <div class="mb-3">
-                                            <label for="editEstado" class="form-label">Estado</label>
-                                            <input type="text" class="form-control" id="editEstado" name="editEstado" value="<?php echo $estadoComputadora; ?>" required>
-                                        </div>
-                                        <input type="hidden" id="editPcID" name="editPcID" value="<?php echo $idComputadora; ?>">
-                                        <button type="submit" class="btn btn-primary">Guardar Cambios</button>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-
                     <div class="container-fluid px-4">
                         <h1 class="mt-4">Lista de Equipos</h1>
                         <hr>
@@ -193,11 +160,11 @@
                             <table class="table">
                                 <thead>
                                     <tr>
-                                        <th>Identificador</th>
-                                        <th>Nombre</th>
-                                        <th>No.Laboratorio</th>
-                                        <th>Estado</th>
-                                        <th>Acciones</th>
+                                        <th class="text-center">Identificador</th>
+                                        <th class="text-center">Nombre</th>
+                                        <th class="text-center">No.Laboratorio</th>
+                                        <th class="text-center">Estado</th>
+                                        <th class="text-center">Acciones</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -205,16 +172,13 @@
                                     if (!is_string($datos) && count($datos) > 0) {
                                         foreach ($datos as $campo) {
                                             echo "<tr>";
-                                            echo "<td>".$campo["PcID"]."</td>";
-                                            echo "<td>".$campo["Nombre"]."</td>";
-                                            echo "<td>".$campo["Lab_No"] . "</td>";
-                                            echo "<td>".$campo["Estado"] . "</td>";
-                                            echo '<td>
+                                            echo "<td class='text-center'>".$campo["PcID"]."</td>";
+                                            echo "<td class='text-center'>".$campo["Nombre"]."</td>";
+                                            echo "<td class='text-center'>".$campo["Lab_No"] . "</td>";
+                                            echo "<td class='text-center'>".$campo["Estado"] . "</td>";
+                                            echo '<td class="text-center">
                                             <a href="?op=eliminarComputadora&pcID='.$campo["PcID"].'" type="button" class="btn btn-danger btn-sm" data-bs-target="#eliminarExitoso">
                                             <i class="fas fa-trash"></i>
-                                            </a>
-                                            <a href="?op=editarComputadora&pcID='.$campo["PcID"].'" type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#editarComputadoraModal">
-                                            <i class="fas fa-edit"></i>
                                             </a>
                                         </td>';
                                             echo "</tr>";

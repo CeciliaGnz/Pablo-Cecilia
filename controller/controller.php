@@ -151,24 +151,20 @@ class Controller
         header("Location: index.php?op=equipos");
     }
     
+    // ESTA FUNCIÓN AGARRA LOS VALORES DE LA FILA SELECCIONADA Y LOS INSERTA EN EL FORMULARIO
     public function editarComputadora() {
+        $detallesComputadora = null; // Definir la variable antes del condicional
         if (isset($_GET['pcID'])) {
-            $pcID = $_GET['pcID'];
             $pc = new Computadoras();
-            $computadora = $pc->obtenerComputadora($pcID); 
-            if ($computadora) {
-                // Pasar los datos a la vista para mostrar en el formulario de edición
-                $nombreComputadora = $computadora['Nombre'];
-                $nombreLaboratorio = $computadora['Lab_No'];
-                $estadoComputadora = $computadora['Estado'];
-                $idComputadora = $computadora['PcID'];
-                header("Location: index.php?op=equipos");
-                exit();
+            $pcID = $_GET['pcID']; 
+            $detallesComputadora = $pc->obtenerComputadora($pcID);
+            if (isset($detallesComputadora)) {
+                include 'view/panel/lista-equipos.php';
             } else {
-                // Manejar el caso en que no se encuentre la computadora
-                echo "Computadora no encontrada";
-            }
-        } else {
+                echo "Detalles de la computadora no disponibles";
+            } 
+        } 
+        else {
             // Manejar el caso en que no se proporcione el ID de la computadora
             echo "ID de computadora no proporcionado";
         }
