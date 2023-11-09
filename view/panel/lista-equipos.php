@@ -157,8 +157,14 @@
                                         }
                                     } 
                                     else {
-                                        echo 'No hay computadoras';
-                                    }
+                                        echo '<tr class="text-center">
+                                        <td colspan="5">
+                                            <div class="alert alert-danger" role="alert">
+                                                No hay computadoras
+                                            </div>
+                                        </td>
+                                        </tr>';
+                                            }
                                        
                                        
                                     ?>
