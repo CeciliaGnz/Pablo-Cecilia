@@ -101,13 +101,13 @@
                             </div>
                             <div class="modal-body">
                                 <!-- Formulario para agregar una computadora -->
-                                <form method="post" action="index.php?action=agregarComputadora">
+                                <form method="POST" action="./?op=guardarComputadora">
                                 <!-- Campos para ingresar los datos de la computadora (nombre, laboratorio, descripción, estado) -->
                                 <div class="mb-3">
-                                    <input type="text" name="nombre" class="form-control" placeholder="Inserte el nombre de la computadora">
+                                    <input type="text" name="nombrePC" class="form-control" placeholder="Inserte el nombre de la computadora" required>
                                 </div>
                                 <div class="mb-3">
-                                <select class="form-control" name="nameLab" id="lab">
+                                <select class="form-control" name="nameLab" id="lab" required>
                                     <?php 
                                     foreach ($nombreLab as $row){
                                         echo '<option value="'.$row["Lab_No"].'" disable selected>'.$row["Lab_No"].'</option>';

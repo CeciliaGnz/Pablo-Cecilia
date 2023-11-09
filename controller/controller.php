@@ -81,6 +81,7 @@ class Controller
         header('Location: ?op=crear&msg=' . $this->resp);
     }
 
+
     public function Ingresar(){
         $ingresarUsuario = new Usuario();
         
@@ -129,6 +130,16 @@ class Controller
         require 'view/panel/form-reservar.php';
     }
 
+
+    public function guardarComputadora(){
+        $pc = new Computadoras();
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $nombre = $_POST['nombrePC'];
+            $lab_No = $_POST['nameLab'];
+            $this->ingresarEquipos();
+            $resultado = $pc->agregarComputadora($nombre, $lab_No);
+        }
+    }
    
 
 }

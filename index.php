@@ -38,6 +38,9 @@ if (isset($_GET['op'])){
     elseif ($opcion=="reservarequipo"){
         $controller->RealizarReservaForm();
     }
+    elseif ($opcion=="guardarComputadora"){
+        $controller->guardarComputadora();
+    }
     elseif ($opcion=="salir"){
         session_destroy();
         $controller->Index();
