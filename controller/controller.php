@@ -20,7 +20,7 @@ class Controller
         $this->reserva = new Reservar();
         $this->reporte = new Reporte();
         $this->pc = new Computadoras();
-
+        $this->laboratorio = new Laboratorio();
     }
 
     public function Index(){
@@ -40,8 +40,7 @@ class Controller
 
     public function IngresarEquipos(){
         $datos = $this->pc->mostrarComputadoras();
-        $obtenerNombresLab = new Laboratorio();
-        $nombreLab = $obtenerNombresLab->mostrarLaboratorios();
+        $nombreLab = $this->laboratorio->mostrarLaboratorios();
         require("view/panel/lista-equipos.php"); 
         
     }
@@ -54,6 +53,7 @@ class Controller
 
     public function IngresarVerReportes(){
         $result = $this->reporte->ObtenerReporteReservas();
+        $totalReservas = $this->reporte->obtenerTotalReservas(); 
         require("view/panel/reporte-reservas.php"); 
     }
 
