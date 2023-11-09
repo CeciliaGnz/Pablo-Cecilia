@@ -2,7 +2,9 @@
 session_start();// Comienzo de la sesión
 require_once 'model/usuario.php';
 require_once 'model/reservar.php';
+require_once 'model/computadoras.php';
 require_once 'model/reporte.php';
+require_once 'model/laboratorio.php';
 
 class Controller
 {
@@ -10,6 +12,7 @@ class Controller
     private $model4;
     private $resp;
 
+   
     public function __CONSTRUCT(){
         $this->model = new Usuario();
         $this->model4 = new Reservar();
@@ -31,19 +34,18 @@ class Controller
     }
 
     public function IngresarEquipos(){
+        $pc  = new Computadoras();
+        $datos = $pc->mostrarComputadoras();
+        $obtenerNombresLab = new Laboratorio();
+        $nombreLab = $obtenerNombresLab->mostrarLaboratorios();
         require("view/panel/lista-equipos.php"); 
+        
     }
     
-    public function ObtenerEquiposDisponibles() {
-        $pdo = Db::StartUp();
-        $sql = "SELECT PcID, Nombre FROM Computadora WHERE Estado = 'disponible'";
-        $stmt = $pdo->prepare($sql);
-        $stmt->execute();
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
-    }
 
     public function IngresarReserva() {
-        $equiposDisponibles = $this->ObtenerEquiposDisponibles();
+        $pc = new Computadoras();
+        $equiposDisponibles = $pc->ObtenerEquiposDisponibles();
         require("view/panel/form-reservar.php");
     }
 
@@ -101,10 +103,10 @@ class Controller
         }
     }
 
-    
-
     public function RealizarReservaForm()
     {
+
+        $pc = new Computadoras(); 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // Obtener los datos del formulario
             $equipo = $_POST['equipo'];
@@ -122,11 +124,12 @@ class Controller
         }
         
         // obtiene nuevamente la lista de equipos disponibles
-        $equiposDisponibles = $this->ObtenerEquiposDisponibles();
+        $equiposDisponibles = $pc->ObtenerEquiposDisponibles();
 
         require 'view/panel/form-reservar.php';
     }
 
+   
 
 }
-
+   ?>

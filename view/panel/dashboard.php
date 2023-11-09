@@ -17,11 +17,11 @@ if ($_SESSION["acceso"] != true)
         <meta name="description" content="" />
         <meta name="author" content="" />
         <title>Dashboard</title>
-        <link href="../../public/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
-        <link href="../../public/css/style.css" rel="stylesheet" />
+        <link href="./public/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+        <link href="./public/css/style.css" rel="stylesheet" />
         <link rel="shortcut icon" href="public/images/utp-logo.png" type="image/x-icon">
         <!-- Scrip de iconos local-->
-        <script src="../../public/js/all.js" crossorigin="anonymous"></script>
+        <script src="../public/js/all.js" crossorigin="anonymous"></script>
     </head>
     <body class="sb-nav-fixed">
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
@@ -103,7 +103,7 @@ if ($_SESSION["acceso"] != true)
                                 <div class="row no-gutters">
                                     <div class="col-md-3 mx-auto text-center">
                                     <div class="image-container w-75 mx-auto">
-                                        <img src="../../public/images/pc.png" class="img-fluid d-block mt-3 mb-3">
+                                        <img src="./public/images/pc.png" class="img-fluid d-block mt-3 mb-3">
                                     </div>
                                     </div>
                                     <div class="col-md-8">
@@ -122,9 +122,7 @@ if ($_SESSION["acceso"] != true)
                                 <div class="card bg-success text-white">
                                     <div class="row no-gutters">
                                         <div class="col-md-3 mx-auto text-center">
-                                            <div class="image-container w-75 mx-auto">
-                                            <img src="../../public/images/reserva.png" class="img-fluid d-block mt-3 mb-3" >
-                                        </div>
+                                            <img src="./public/images/reserva.png" class="img-fluid" >
                                         </div>
                                         <div class="col-md-8">
                                             <div class="card-body">
