@@ -27,7 +27,7 @@ Class Computadoras {
             $this->msg = $nombre." Computadora Agregada";
             $this->msg= $nombre." ha sido agregada!";
        } catch (Exception $ex) {
-         $msg = "No se pudo agregar la computadora"; 
+         $this->msg = "No se pudo agregar la computadora"; 
        }
        return $this->msg;
     }
@@ -52,15 +52,28 @@ Class Computadoras {
             return $this->msg = "Error al cargar los datos"." ".$e; 
         }
     }
+
+    public function obtenerComputadora($pcID){
+        try{
+            $sqlPcID = "SELECT c.Nombre, c.Estado, l.Lab_No FROM computadora c JOIN laboratorio l ON c.LabID = l.LabID WHERE c.PcID = ?";
+            $stmt = $this->pdo->prepare($sqlPcID);
+            $stmt->execute([$pcID]);
+            return $stmt->fetch(PDO::FETCH_ASSOC);
+        }
+        catch (Exception $e){
+            $this->msg = "errorEdit";
+        }
+    }
+    
     
     public function eliminarComputadora($pcID) {
         try {
             $sql = "DELETE FROM Computadora WHERE PcID = ?";
             $stmt = $this->pdo->prepare($sql);
             $stmt->execute([$pcID]);
-            $this->msg = "Computadora eliminada correctamente";
+            $this->msg = "exitoso";
         } catch (Exception $ex) {
-            $this->msg = "Error al eliminar la computadora";
+            $this->msg = "error";
         }
         return $this->msg;
     }

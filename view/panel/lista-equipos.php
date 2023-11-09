@@ -80,6 +80,69 @@
             </div>
             <div id="layoutSidenav_content">
                 <main>
+                <!-- MENSAJES EMERGENTES -->
+                <?php
+                    // Verificar si hay un mensaje de éxito en la URL
+                    if (isset($_GET['success']) && $_GET['success'] == 1) {
+                        echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
+                                La computadora se eliminó exitosamente.
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>';
+                        echo '<script>
+                            setTimeout(function() {
+                                window.location.href = "index.php?op=equipos";
+                            }, 3000);
+                          </script>';
+                    }
+
+                    // Verificar si hay un mensaje de error en la URL
+                    if (isset($_GET['error']) && $_GET['error'] == 1) {
+                        echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                Error al eliminar la computadora.
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>';
+                        echo '<script>
+                            setTimeout(function() {
+                                window.location.href = "index.php?op=equipos";
+                            }, 3000);
+                          </script>';
+                    }
+                    
+                ?>
+
+                <!-- VENTANAS EMERGENTES -->
+
+                    <!-- Modal para editar computadora -->
+                    <div class="modal fade" id="editarComputadoraModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Editar Computadora</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <form method="POST" action="./?op=guardarEdicionComputadora">
+                                        <div class="mb-3">
+                                            <label for="editNombrePC" class="form-label">Nombre de la computadora</label>
+                                            <input type="text" class="form-control" id="editNombrePC" name="editNombrePC" value="<?php echo $nombreComputadora; ?>" required>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="editLab" class="form-label">Laboratorio</label>
+                                            <input type="text" class="form-control" id="editLab" name="editLab" value="<?php echo $nombreLaboratorio; ?>" required>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="editEstado" class="form-label">Estado</label>
+                                            <input type="text" class="form-control" id="editEstado" name="editEstado" value="<?php echo $estadoComputadora; ?>" required>
+                                        </div>
+                                        <input type="hidden" id="editPcID" name="editPcID" value="<?php echo $idComputadora; ?>">
+                                        <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
                     <div class="container-fluid px-4">
                         <h1 class="mt-4">Lista de Equipos</h1>
                         <hr>
@@ -108,13 +171,15 @@
                                 </div>
                                 <div class="mb-3">
                                 <select class="form-control" name="nameLab" id="lab" required>
+                                    <option value="" disabled selected hidden>Selecciona un laboratorio</option>
                                     <?php 
-                                    foreach ($nombreLab as $row){
-                                        echo '<option value="'.$row["Lab_No"].'" disable selected>'.$row["Lab_No"].'</option>';
+                                    foreach ($nombreLab as $row) {
+                                        echo '<option value="'.$row["Lab_No"].'">'.$row["Lab_No"].'</option>';
                                     }
                                     ?>
-                                    <option value="def" selected>Selecciona un laboratorio</option>
                                 </select>
+
+
 
                                 </div>
                                 <button type="submit" class="btn btn-primary">Agregar Computadora</button>
@@ -136,7 +201,6 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <!-- FUNCIONALIADAD A CADA BOTON  -->
                                     <?php
                                     if (!is_string($datos) && count($datos) > 0) {
                                         foreach ($datos as $campo) {
@@ -146,12 +210,12 @@
                                             echo "<td>".$campo["Lab_No"] . "</td>";
                                             echo "<td>".$campo["Estado"] . "</td>";
                                             echo '<td>
-                                            <a href="?op=eliminarComputadora&pcID='.$campo["PcID"].'" type="button" class="btn btn-danger btn-sm")">
+                                            <a href="?op=eliminarComputadora&pcID='.$campo["PcID"].'" type="button" class="btn btn-danger btn-sm" data-bs-target="#eliminarExitoso">
                                             <i class="fas fa-trash"></i>
                                             </a>
-                                            <button type="button" class="btn btn-primary btn-sm")">
-                                                <i class="fas fa-edit"></i>
-                                            </button>
+                                            <a href="?op=editarComputadora&pcID='.$campo["PcID"].'" type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#editarComputadoraModal">
+                                            <i class="fas fa-edit"></i>
+                                            </a>
                                         </td>';
                                             echo "</tr>";
                                         }
@@ -182,21 +246,7 @@
                 </footer>
             </div>
         </div>
-        <script>
-        function eliminarElemento(id) {
-            var confirmacion = confirm('¿Seguro que deseas eliminar el elemento con ID ' + id + '?');
-            
-            if (confirmacion) {
-                // Aquí puedes realizar la lógica para eliminar el elemento (puede ser una llamada AJAX al servidor)
-                alert('Elemento eliminado con ID: ' + id);
-            }
-        }
 
-        function editarElemento(id) {
-            // Aquí puedes abrir una ventana emergente o redirigir a la página de edición
-            alert('Editar elemento con ID: ' + id);
-        }
-        </script>
         <script src="./public/bootstrap/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="./public/js/script.js"></script>
         <script src="./public/js/simple-datatables.min.js" crossorigin="anonymous"></script>
