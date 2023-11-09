@@ -51,6 +51,35 @@ Class Computadoras {
         } catch (Exception $e) {
             return $this->msg = "Error al cargar los datos"." ".$e; 
         }
-    } 
+    }
+    
+    public function eliminarComputadora($pcID) {
+        try {
+            $sql = "DELETE FROM Computadora WHERE PcID = ?";
+            $stmt = $this->pdo->prepare($sql);
+            $stmt->execute([$pcID]);
+            $this->msg = "Computadora eliminada correctamente";
+        } catch (Exception $ex) {
+            $this->msg = "Error al eliminar la computadora";
+        }
+        return $this->msg;
+    }
+
+    public function editarComputadora($pcID, $nombre, $laboratorio) {
+        try {
+            $sqlLabID = "SELECT LabID FROM laboratorio WHERE Lab_No = ?";
+            $stmtLabID = $this->pdo->prepare($sqlLabID);
+            $stmtLabID->execute([$laboratorio]);
+            $labID = $stmtLabID->fetchColumn();
+
+            $sql = "UPDATE Computadora SET Lab_No = ?, Nombre = ? WHERE PcID = ?";
+            $stmt = $this->pdo->prepare($sql);
+            $stmt->execute([$labID, $nombre, $pcID]);
+            $this->msg = "Computadora editada correctamente";
+        } catch (Exception $ex) {
+            $this->msg = "Error al editar la computadora";
+        }
+        return $this->msg;
+    }
 }
 ?>
