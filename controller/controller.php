@@ -9,14 +9,13 @@ require_once 'model/laboratorio.php';
 class Controller
 {
     private $model;
-    private $model4;
+    private $reserva;
     private $resp;
 
    
     public function __CONSTRUCT(){
         $this->model = new Usuario();
-        $this->modelreservar = new Reservar();
-        $this->modelreporte = new Reporte();
+        $this->reserva = new Reservar();
     }
 
     public function Index(){
@@ -28,7 +27,8 @@ class Controller
     }
 
     public function IngresarPanel(){
-        $totalReservas = $this->modelreporte->obtenerTotalReservas(); //this
+        $reporte = new Reporte();
+        $totalReservas = $reporte->obtenerTotalReservas(); 
         require("view/panel/dashboard.php");
         
     }
@@ -39,7 +39,9 @@ class Controller
         $obtenerNombresLab = new Laboratorio();
         $nombreLab = $obtenerNombresLab->mostrarLaboratorios();
         require("view/panel/lista-equipos.php"); 
+        
     }
+    
 
     public function IngresarReserva() {
         $pc = new Computadoras();
@@ -48,8 +50,8 @@ class Controller
     }
 
     public function IngresarVerReportes(){
-        
-        $result = $this->modelreporte->ObtenerReporteReservas();
+        $reporte = new Reporte();
+        $result = $reporte->ObtenerReporteReservas();
         require("view/panel/reporte-reservas.php"); 
     }
 
@@ -114,7 +116,8 @@ class Controller
             $descripcion = $_POST['descripcion'];
             $usuarioID = $_SESSION['UsuarioID']; 
 
-            $resultado = $this->modelreservar->RealizarReserva($equipo, $desde, $hasta, $descripcion, $usuarioID);
+            
+            $resultado = $this->reserva->RealizarReserva($equipo, $desde, $hasta, $descripcion, $usuarioID);
 
             if ($resultado === "Reserva exitosa.") {
                 $_SESSION['resultado_reserva'] = $resultado;
