@@ -91,7 +91,7 @@
                         <table class="table">
                         <thead>
                             <tr>
-                                <th>ID</th>
+                                <th>ID (Reserva)</th>
                                 <th>Nombre</th>
                                 <th>No.Laboratorio</th>
                                 <th>Reservado por:</th>

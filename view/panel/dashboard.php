@@ -108,7 +108,7 @@ if ($_SESSION["acceso"] != true)
                                     </div>
                                     <div class="col-md-8">
                                         <div class="card-body">
-                                            <h1 class="card-title">00</h1>
+                                        <h1 class="card-title"><?php echo $totalEquipos; ?></h1>
                                             <h6 class="card-subtitle mb-2 text-light">Total de equipos</h6>
                                         </div>
                                     </div>
