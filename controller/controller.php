@@ -61,7 +61,7 @@ class Controller
     public function IngresarVerMisReservas()
     {
         $usuarioID = $_SESSION['UsuarioID'];
-        $misReservas = $this->modelreservar->ObtenerMisReservas($usuarioID);
+        $misReservas = $this->reserva->ObtenerMisReservas($usuarioID);
 
         require("view/panel/mis-reservas.php");
     }
@@ -175,6 +175,20 @@ class Controller
         }
     }
 
+    public function eliminarReserva() {
+        if (isset($_GET['id_reserva'])) {
+            $reservaID = $_GET['id_reserva'];
+    
+            $resultado = $this->reserva->eliminarReserva($reservaID);
+    
+            if ($resultado) {
+                header("Location: index.php?op=misreservas");
+                exit();
+            } else {
+                echo "Error al eliminar la reserva.";
+            }
+        }
+    }
     
    
 

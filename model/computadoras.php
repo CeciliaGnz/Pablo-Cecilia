@@ -52,6 +52,19 @@ Class Computadoras {
             return $this->msg = "Error al cargar los datos"." ".$e; 
         }
     }
+
+    public function obtenerTotalEquiposDisponibles() {
+        try {
+            $sql = "SELECT COUNT(*) as total FROM Computadora WHERE Estado = 'disponible'";
+            $stmt = $this->pdo->prepare($sql);
+            $stmt->execute();
+            $total = $stmt->fetchColumn();
+            return $total;
+        } catch (Exception $e) {
+            return 0; 
+        }
+    }
+
     
     public function eliminarComputadora($pcID) {
         try {
