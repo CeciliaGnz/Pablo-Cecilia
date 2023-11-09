@@ -52,18 +52,18 @@ Class Computadoras {
         }
     }
 
-    public function obtenerComputadora($pcID){
-        try{
-            $sqlPcID = "SELECT c.Nombre, c.Estado, l.Lab_No FROM computadora c JOIN laboratorio l ON c.LabID = l.LabID WHERE c.PcID = ?";
-            $stmt = $this->pdo->prepare($sqlPcID);
-            $stmt->execute([$pcID]);
-            return $stmt->fetch(PDO::FETCH_ASSOC);
-        }
-        catch (Exception $e){
-            $this->msg = "errorEdit";
+    public function obtenerTotalEquiposDisponibles() {
+        try {
+            $sql = "SELECT COUNT(*) as total FROM Computadora WHERE Estado = 'disponible'";
+            $stmt = $this->pdo->prepare($sql);
+            $stmt->execute();
+            $total = $stmt->fetchColumn();
+            return $total;
+        } catch (Exception $e) {
+            return 0; 
         }
     }
-    
+
     
     public function eliminarComputadora($pcID) {
         try {

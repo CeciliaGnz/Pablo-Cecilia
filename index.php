@@ -47,6 +47,9 @@ if (isset($_GET['op'])){
     elseif ($opcion=="editarComputadora"){
         $controller->editarComputadora();
     }
+    elseif ($opcion=="eliminarReserva"){
+        $controller->eliminarReserva();
+    }
     elseif ($opcion=="salir"){
         session_destroy();
         $controller->Index();

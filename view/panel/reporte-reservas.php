@@ -98,7 +98,7 @@ if ($_SESSION["acceso"] != true)
                         <div class="container mt-4">
                         <div class="card">
                             <div class="card-header">
-                                <i class="fas fa-table me-1"></i> Reservas registradas
+                                <i class="fas fa-table me-1"></i> Reservas registradas: <?php echo $totalReservas; ?>
                             </div>
                             <div class="card-body">
                             <table class="table table-bordered">
@@ -150,6 +150,5 @@ if ($_SESSION["acceso"] != true)
         <script src="../../public/bootstrap/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="../../public/js/script.js"></script>
         <script src="../../public/js/simple-datatables.min.js" crossorigin="anonymous"></script>
-        <script src="../../public/js/datatables-simple-demo.js"></script>
     </body>
 </html>
