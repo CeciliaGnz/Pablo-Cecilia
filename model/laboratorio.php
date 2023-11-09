@@ -22,6 +22,7 @@ class Laboratorio {
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
         } catch (Exception $ex) {
             $this->msg = "Error al mostrar los laboratorios ".$ex; 
+            
         }
     }
 }

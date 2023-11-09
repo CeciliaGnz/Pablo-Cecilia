@@ -146,10 +146,10 @@
                                             echo "<td>".$campo["Lab_No"] . "</td>";
                                             echo "<td>".$campo["Estado"] . "</td>";
                                             echo '<td>
-                                            <button type="button" class="btn btn-danger btn-sm" onclick="eliminarElemento('.$campo["PcID"].')">
+                                            <a href="?op=eliminarComputadora&pcID='.$campo["PcID"].'" type="button" class="btn btn-danger btn-sm")">
                                             <i class="fas fa-trash"></i>
-                                            </button>
-                                            <button type="button" class="btn btn-primary btn-sm" onclick="editarElemento('.$campo["PcID"].')">
+                                            </a>
+                                            <button type="button" class="btn btn-primary btn-sm")">
                                                 <i class="fas fa-edit"></i>
                                             </button>
                                         </td>';

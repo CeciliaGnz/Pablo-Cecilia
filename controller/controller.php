@@ -141,6 +141,31 @@ class Controller
             exit();
         }
     }
+    public function editarComputadora(){
+
+    }
+
+    
+
+    public function eliminarComputadora(){
+        if (isset($_GET['pcID'])) {
+            $pcID = $_GET['pcID'];
+            $pc = new Computadoras();
+            $resultado = $pc->eliminarComputadora($pcID);
+
+            if ($resultado) {
+                // Éxito al eliminar
+                header("Location: index.php?op=equipos");
+                exit();
+            } else {
+                // Error al eliminar
+                echo "Error al eliminar la computadora";
+            }
+        } else {
+            // Redireccionar o mostrar un mensaje de error
+            echo "ID de computadora no proporcionado";
+        }
+    }
 
     
    
