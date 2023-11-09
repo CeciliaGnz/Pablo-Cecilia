@@ -136,10 +136,13 @@ class Controller
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $nombre = $_POST['nombrePC'];
             $lab_No = $_POST['nameLab'];
-            $this->ingresarEquipos();
             $resultado = $pc->agregarComputadora($nombre, $lab_No);
+            header("Location: index.php?op=equipos");
+            exit();
         }
     }
+
+    
    
 
 }
