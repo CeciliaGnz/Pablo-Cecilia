@@ -12,7 +12,8 @@ class Controller
 
     public function __CONSTRUCT(){
         $this->model = new Usuario();
-        $this->model4 = new Reservar();
+        $this->modelreservar = new Reservar();
+        $this->modelreporte = new Reporte();
     }
 
     public function Index(){
@@ -24,8 +25,7 @@ class Controller
     }
 
     public function IngresarPanel(){
-        $reporte = new Reporte();
-        $totalReservas = $reporte->obtenerTotalReservas(); 
+        $totalReservas = $this->modelreporte->obtenerTotalReservas(); //this
         require("view/panel/dashboard.php");
         
     }
@@ -33,23 +33,15 @@ class Controller
     public function IngresarEquipos(){
         require("view/panel/lista-equipos.php"); 
     }
-    
-    public function ObtenerEquiposDisponibles() {
-        $pdo = Db::StartUp();
-        $sql = "SELECT PcID, Nombre FROM Computadora WHERE Estado = 'disponible'";
-        $stmt = $pdo->prepare($sql);
-        $stmt->execute();
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
-    }
 
     public function IngresarReserva() {
-        $equiposDisponibles = $this->ObtenerEquiposDisponibles();
+        $equiposDisponibles = $this->ObtenerEquiposDisponibles();//se cambio a obtener equipos a computadora.php verificar si funciona
         require("view/panel/form-reservar.php");
     }
 
     public function IngresarVerReportes(){
-        $reporte = new Reporte();
-        $result = $reporte->ObtenerReporteReservas();
+        
+        $result = $this->modelreporte->ObtenerReporteReservas();
         require("view/panel/reporte-reservas.php"); 
     }
 
@@ -113,8 +105,7 @@ class Controller
             $descripcion = $_POST['descripcion'];
             $usuarioID = $_SESSION['UsuarioID']; 
 
-            $reservar = new Reservar();
-            $resultado = $reservar->RealizarReserva($equipo, $desde, $hasta, $descripcion, $usuarioID);
+            $resultado = $this->modelreservar->RealizarReserva($equipo, $desde, $hasta, $descripcion, $usuarioID);
 
             if ($resultado === "Reserva exitosa.") {
                 $_SESSION['resultado_reserva'] = $resultado;
