@@ -19,6 +19,8 @@ class Controller
         $this->reserva = new Reservar();
     }
 
+
+
     public function Index(){
         require("view/login.php");
     }
@@ -33,7 +35,6 @@ class Controller
         require("view/panel/dashboard.php");
         
     }
-
     public function IngresarEquipos(){
         $pc  = new Computadoras();
         $datos = $pc->mostrarComputadoras();
@@ -43,7 +44,6 @@ class Controller
         
     }
     
-
     public function IngresarReserva() {
         $pc = new Computadoras();
         $equiposDisponibles = $pc->ObtenerEquiposDisponibles();
@@ -144,33 +144,6 @@ class Controller
     }
     
 
-    public function guardarEdicionComputadora(){
-        $pc = new Computadoras();
-        $pcID = $_GET['pcID']; 
-        $detallesComputadora = $pc->obtenerComputadora($pcID);
-        header("Location: index.php?op=equipos");
-    }
-    
-    // ESTA FUNCIÓN AGARRA LOS VALORES DE LA FILA SELECCIONADA Y LOS INSERTA EN EL FORMULARIO
-    public function editarComputadora() {
-        $detallesComputadora = null; // Definir la variable antes del condicional
-        if (isset($_GET['pcID'])) {
-            $pc = new Computadoras();
-            $pcID = $_GET['pcID']; 
-            $detallesComputadora = $pc->obtenerComputadora($pcID);
-            if (isset($detallesComputadora)) {
-                include 'view/panel/lista-equipos.php';
-            } else {
-                echo "Detalles de la computadora no disponibles";
-            } 
-        } 
-        else {
-            // Manejar el caso en que no se proporcione el ID de la computadora
-            echo "ID de computadora no proporcionado";
-        }
-    }
-    
-
     public function eliminarComputadora(){
         if (isset($_GET['pcID'])) {
             $pcID = $_GET['pcID'];
@@ -191,6 +164,9 @@ class Controller
             echo "ID de computadora no proporcionado";
         }
     }
+
+
+
 }
     
    ?>
