@@ -7,11 +7,11 @@
         <meta name="description" content="" />
         <meta name="author" content="" />
         <title>Perfil de usuario</title>
-        <link href="../../public/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
-        <link href="../../public/css/style.css" rel="stylesheet" />
+        <link href="./public/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+        <link href="./public/css/style.css" rel="stylesheet" />
         <link rel="shortcut icon" href="public/images/utp-logo.png" type="image/x-icon">
         <!-- Scrip de iconos local-->
-        <script src="../../public/js/all.js" crossorigin="anonymous"></script>
+        <script src="./public/js/all.js" crossorigin="anonymous"></script>
     </head>
     <body class="sb-nav-fixed">
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
@@ -86,6 +86,48 @@
                         <ol class="breadcrumb mb-4">
                             <li class="breadcrumb-item active">Listado de Computadoras de la Universidad</li>
                         </ol>
+                       <!-- Botón para abrir la ventana emergente -->
+                       <a href="index.php?op=nombresLab" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#agregarComputadoraModal">
+                        Agregar Computadora
+                        </a>
+
+                        <!-- Ventana emergente (modal) -->
+                        <div class="modal fade" id="agregarComputadoraModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Agregar Computadora</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <!-- Formulario para agregar una computadora -->
+                                <form method="post" action="index.php?action=agregarComputadora">
+                                <!-- Campos para ingresar los datos de la computadora (nombre, laboratorio, descripción, estado) -->
+                                <div class="mb-3">
+                                    <input type="text" name="nombre" class="form-control" placeholder="Inserte el nombre de la computadora">
+                                </div>
+                                <div class="mb-3">
+                                <select class="form-control" name="cars" id="cars">
+                                    <option value="def" disable selected>Selecciona un laboratorio</option>
+                                    <?php 
+                                    foreach ($nombreLab as $row){
+                                        echo '<option value="'.$row["Lab_No"].'" disable selected>'.$row["Lab_No"].'</option>';
+                                        echo '<option value="volvo">5-509</option>';
+                                    }
+                                    ?>
+                                    
+
+                                    <option value="saab">6-609</option>
+                                    
+                                </select>
+
+                                </div>
+                                <button type="submit" class="btn btn-primary">Agregar Computadora</button>
+                                </form>
+                            </div>
+                            </div>
+                        </div>
+                        </div>
 
                         <div class="container mt-5">
                             <table class="table">
@@ -93,7 +135,8 @@
                                     <tr>
                                         <th>Identificador</th>
                                         <th>Nombre</th>
-                                        <th>No.Laboratorio </th>
+                                        <th>No.Laboratorio</th>
+                                        <th>Estado</th>
                                         <th>Acciones</th>
                                     </tr>
                                 </thead>
@@ -102,6 +145,7 @@
                                         <td>1</td>
                                         <td>Computadora 1</td>
                                         <td>4-405</td>
+                                        <td>Disponible</td>
                                         <td>
                                             <button type="button" class="btn btn-danger btn-sm">
                                                 <i class="fas fa-trash"></i>
@@ -111,7 +155,25 @@
                                             </button>
                                         </td>
                                     </tr>
-                                
+                                    <!-- FUNCIONALIADAD A CADA BOTON  -->
+                                    <?php
+                                        foreach ($datos as $campo) {
+                                            echo "<tr>";
+                                            echo "<td>".$campo["PcID"]."</td>";
+                                            echo "<td>".$campo["Nombre"]."</td>";
+                                            echo "<td>".$campo["Lab_No"] . "</td>";
+                                            echo "<td>".$campo["Estado"] . "</td>";
+                                            echo '<td>
+                                            <button type="button" class="btn btn-danger btn-sm">
+                                                <i class="fas fa-trash"></i>
+                                            </button>
+                                            <button type="button" class="btn btn-primary btn-sm">
+                                                <i class="fas fa-edit"></i>
+                                            </button>
+                                        </td>';
+                                            echo "</tr>";
+                                        }   
+                                    ?>
                                 </tbody>
                             </table>
                         </div>
@@ -126,9 +188,9 @@
                 </footer>
             </div>
         </div>
-        <script src="../../public/bootstrap/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-        <script src="../../public/js/script.js"></script>
-        <script src="../../public/js/simple-datatables.min.js" crossorigin="anonymous"></script>
-        <script src="../../public/js/datatables-simple-demo.js"></script>
+        <script src="./public/bootstrap/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+        <script src="./public/js/script.js"></script>
+        <script src="./public/js/simple-datatables.min.js" crossorigin="anonymous"></script>
+        <script src="./public/js/datatables-simple-demo.js"></script>
     </body>
 </html>

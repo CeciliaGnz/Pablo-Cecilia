@@ -42,8 +42,7 @@ if (isset($_GET['op'])){
         session_destroy();
         $controller->Index();
     }
-
-
+    
     else{
         $controller->Index();
     }
