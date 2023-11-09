@@ -122,7 +122,9 @@ if ($_SESSION["acceso"] != true)
                                 <div class="card bg-success text-white">
                                     <div class="row no-gutters">
                                         <div class="col-md-3 mx-auto text-center">
-                                            <img src="./public/images/reserva.png" class="img-fluid" >
+                                            <div class="image-container w-75 mx-auto">
+                                                <img src="./public/images/reserva.png" class="img-fluid d-block mt-3 mb-3" >
+                                            </div>
                                         </div>
                                         <div class="col-md-8">
                                             <div class="card-body">

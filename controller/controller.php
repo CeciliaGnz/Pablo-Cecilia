@@ -15,7 +15,8 @@ class Controller
    
     public function __CONSTRUCT(){
         $this->model = new Usuario();
-        $this->model4 = new Reservar();
+        $this->modelreservar = new Reservar();
+        $this->modelreporte = new Reporte();
     }
 
     public function Index(){
@@ -27,8 +28,7 @@ class Controller
     }
 
     public function IngresarPanel(){
-        $reporte = new Reporte();
-        $totalReservas = $reporte->obtenerTotalReservas(); 
+        $totalReservas = $this->modelreporte->obtenerTotalReservas(); //this
         require("view/panel/dashboard.php");
         
     }
@@ -39,9 +39,7 @@ class Controller
         $obtenerNombresLab = new Laboratorio();
         $nombreLab = $obtenerNombresLab->mostrarLaboratorios();
         require("view/panel/lista-equipos.php"); 
-        
     }
-    
 
     public function IngresarReserva() {
         $pc = new Computadoras();
@@ -50,8 +48,8 @@ class Controller
     }
 
     public function IngresarVerReportes(){
-        $reporte = new Reporte();
-        $result = $reporte->ObtenerReporteReservas();
+        
+        $result = $this->modelreporte->ObtenerReporteReservas();
         require("view/panel/reporte-reservas.php"); 
     }
 
@@ -116,8 +114,7 @@ class Controller
             $descripcion = $_POST['descripcion'];
             $usuarioID = $_SESSION['UsuarioID']; 
 
-            $reservar = new Reservar();
-            $resultado = $reservar->RealizarReserva($equipo, $desde, $hasta, $descripcion, $usuarioID);
+            $resultado = $this->modelreservar->RealizarReserva($equipo, $desde, $hasta, $descripcion, $usuarioID);
 
             if ($resultado === "Reserva exitosa.") {
                 $_SESSION['resultado_reserva'] = $resultado;
