@@ -105,6 +105,7 @@ if ($_SESSION["acceso"] != true)
                                     <div class="mb-3">
                                         <label for="equipo" class="form-label">Seleccionar equipo</label>
                                         <select class="form-select" id="equipo" name="equipo">
+                                        <option value="" disabled selected>Seleccione un equipo</option>
                                         <?php foreach ($equiposDisponibles as $equipo) : ?>
                                             <option value="<?php echo $equipo['PcID']; ?>"><?php echo $equipo['Nombre']; ?></option>
                                         <?php endforeach; ?>
@@ -129,9 +130,7 @@ if ($_SESSION["acceso"] != true)
                                     <button type="submit" class="btn btn-primary">Reservar equipo</button>
                                 </form>
 
-                                <!-- Agregar un div para mostrar notificaciones -->
-                                    
-
+                                <!--Alert para reserva exitosa-->
                                 <script>
                                 document.addEventListener("DOMContentLoaded", function() {
                                 <?php if ($resultado === "Reserva exitosa.") : ?>
@@ -147,15 +146,11 @@ if ($_SESSION["acceso"] != true)
                             });
 
                                 </script>
-
-
-
-
                             </div>
                         </div>
                     </div>
-
                 </main>
+
                 <footer class="py-4 bg-light mt-auto">
                     <div class="container-fluid px-4">
                         <div class="d-flex align-items-center justify-content-between small">
@@ -163,6 +158,7 @@ if ($_SESSION["acceso"] != true)
                         </div>
                     </div>
                 </footer>
+
             </div>
         </div>
         <script src="../../public/bootstrap/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
