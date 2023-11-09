@@ -11,6 +11,7 @@ class Controller
     private $model;
     private $reserva;
     private $resp;
+    private $msg;
 
    
     public function __CONSTRUCT(){
@@ -55,14 +56,9 @@ class Controller
         require("view/panel/reporte-reservas.php"); 
     }
 
-    public function IngresarVerMisReservas()
-    {
-        $usuarioID = $_SESSION['UsuarioID'];
-        $misReservas = $this->modelreservar->ObtenerMisReservas($usuarioID);
-
-        require("view/panel/mis-reservas.php");
+    public function IngresarVerMisReservas(){
+        require("view/panel/mis-reservas.php"); 
     }
-
 
     public function IngresarPerfil(){
         if(isset($_SESSION['UsuarioID'])) {
@@ -146,10 +142,37 @@ class Controller
             exit();
         }
     }
-    public function editarComputadora(){
+    
 
+    public function guardarEdicionComputadora(){
+        $pc = new Computadoras();
+        $pcID = $_GET['pcID']; 
+        $detallesComputadora = $pc->obtenerComputadora($pcID);
+        header("Location: index.php?op=equipos");
     }
-
+    
+    public function editarComputadora() {
+        if (isset($_GET['pcID'])) {
+            $pcID = $_GET['pcID'];
+            $pc = new Computadoras();
+            $computadora = $pc->obtenerComputadora($pcID); 
+            if ($computadora) {
+                // Pasar los datos a la vista para mostrar en el formulario de edición
+                $nombreComputadora = $computadora['Nombre'];
+                $nombreLaboratorio = $computadora['Lab_No'];
+                $estadoComputadora = $computadora['Estado'];
+                $idComputadora = $computadora['PcID'];
+                header("Location: index.php?op=equipos");
+                exit();
+            } else {
+                // Manejar el caso en que no se encuentre la computadora
+                echo "Computadora no encontrada";
+            }
+        } else {
+            // Manejar el caso en que no se proporcione el ID de la computadora
+            echo "ID de computadora no proporcionado";
+        }
+    }
     
 
     public function eliminarComputadora(){
@@ -157,23 +180,21 @@ class Controller
             $pcID = $_GET['pcID'];
             $pc = new Computadoras();
             $resultado = $pc->eliminarComputadora($pcID);
-
-            if ($resultado) {
+    
+            if ($resultado === 'exitoso') {
                 // Éxito al eliminar
-                header("Location: index.php?op=equipos");
+                header("Location: index.php?op=equipos&success=1");
                 exit();
             } else {
                 // Error al eliminar
-                echo "Error al eliminar la computadora";
+                header("Location: index.php?op=equipos&error=1");
+                exit();
             }
         } else {
             // Redireccionar o mostrar un mensaje de error
             echo "ID de computadora no proporcionado";
         }
     }
-
-    
-   
-
 }
+    
    ?>
