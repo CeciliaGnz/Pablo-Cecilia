@@ -10,6 +10,8 @@ class Controller
 {
     private $model;
     private $reserva;
+    private $reporte;
+    private $pc;
     private $resp;
     private $msg;
 
@@ -17,6 +19,9 @@ class Controller
     public function __CONSTRUCT(){
         $this->model = new Usuario();
         $this->reserva = new Reservar();
+        $this->reporte = new Reporte();
+        $this->pc = new Computadoras();
+        $this->laboratorio = new Laboratorio();
     }
 
     public function Index(){
@@ -28,36 +33,37 @@ class Controller
     }
 
     public function IngresarPanel(){
-        $reporte = new Reporte();
-        $totalReservas = $reporte->obtenerTotalReservas(); 
+        $totalReservas = $this->reporte->obtenerTotalReservas(); 
+        $totalEquipos = $this->pc->obtenerTotalEquiposDisponibles(); 
         require("view/panel/dashboard.php");
         
     }
 
     public function IngresarEquipos(){
-        $pc  = new Computadoras();
-        $datos = $pc->mostrarComputadoras();
-        $obtenerNombresLab = new Laboratorio();
-        $nombreLab = $obtenerNombresLab->mostrarLaboratorios();
+        $datos = $this->pc->mostrarComputadoras();
+        $nombreLab = $this->laboratorio->mostrarLaboratorios();
         require("view/panel/lista-equipos.php"); 
         
     }
     
 
     public function IngresarReserva() {
-        $pc = new Computadoras();
-        $equiposDisponibles = $pc->ObtenerEquiposDisponibles();
+        $equiposDisponibles = $this->pc->ObtenerEquiposDisponibles();
         require("view/panel/form-reservar.php");
     }
 
     public function IngresarVerReportes(){
-        $reporte = new Reporte();
-        $result = $reporte->ObtenerReporteReservas();
+        $result = $this->reporte->ObtenerReporteReservas();
+        $totalReservas = $this->reporte->obtenerTotalReservas(); 
         require("view/panel/reporte-reservas.php"); 
     }
 
-    public function IngresarVerMisReservas(){
-        require("view/panel/mis-reservas.php"); 
+    public function IngresarVerMisReservas()
+    {
+        $usuarioID = $_SESSION['UsuarioID'];
+        $misReservas = $this->reserva->ObtenerMisReservas($usuarioID);
+
+        require("view/panel/mis-reservas.php");
     }
 
     public function IngresarPerfil(){
@@ -126,7 +132,7 @@ class Controller
         }
         
         // obtiene nuevamente la lista de equipos disponibles
-        $equiposDisponibles = $pc->ObtenerEquiposDisponibles();
+        $equiposDisponibles = $this->pc->ObtenerEquiposDisponibles();
 
         require 'view/panel/form-reservar.php';
     }
@@ -137,42 +143,15 @@ class Controller
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $nombre = $_POST['nombrePC'];
             $lab_No = $_POST['nameLab'];
-            $resultado = $pc->agregarComputadora($nombre, $lab_No);
+            $resultado = $this->pc->agregarComputadora($nombre, $lab_No);
             header("Location: index.php?op=equipos");
             exit();
         }
     }
-    
+    public function editarComputadora(){
 
-    public function guardarEdicionComputadora(){
-        $pc = new Computadoras();
-        $pcID = $_GET['pcID']; 
-        $detallesComputadora = $pc->obtenerComputadora($pcID);
-        header("Location: index.php?op=equipos");
     }
-    
-    public function editarComputadora() {
-        if (isset($_GET['pcID'])) {
-            $pcID = $_GET['pcID'];
-            $pc = new Computadoras();
-            $computadora = $pc->obtenerComputadora($pcID); 
-            if ($computadora) {
-                // Pasar los datos a la vista para mostrar en el formulario de edición
-                $nombreComputadora = $computadora['Nombre'];
-                $nombreLaboratorio = $computadora['Lab_No'];
-                $estadoComputadora = $computadora['Estado'];
-                $idComputadora = $computadora['PcID'];
-                header("Location: index.php?op=equipos");
-                exit();
-            } else {
-                // Manejar el caso en que no se encuentre la computadora
-                echo "Computadora no encontrada";
-            }
-        } else {
-            // Manejar el caso en que no se proporcione el ID de la computadora
-            echo "ID de computadora no proporcionado";
-        }
-    }
+
     
 
     public function eliminarComputadora(){
@@ -180,8 +159,8 @@ class Controller
             $pcID = $_GET['pcID'];
             $pc = new Computadoras();
             $resultado = $pc->eliminarComputadora($pcID);
-    
-            if ($resultado === 'exitoso') {
+
+            if ($resultado) {
                 // Éxito al eliminar
                 header("Location: index.php?op=equipos&success=1");
                 exit();
@@ -195,6 +174,23 @@ class Controller
             echo "ID de computadora no proporcionado";
         }
     }
-}
+
+    public function eliminarReserva() {
+        if (isset($_GET['id_reserva'])) {
+            $reservaID = $_GET['id_reserva'];
     
+            $resultado = $this->reserva->eliminarReserva($reservaID);
+    
+            if ($resultado) {
+                header("Location: index.php?op=misreservas");
+                exit();
+            } else {
+                echo "Error al eliminar la reserva.";
+            }
+        }
+    }
+    
+   
+
+}
    ?>

@@ -57,4 +57,17 @@ class Reservar
         }
     }
 
+    public function eliminarReserva($reservaID) {
+        try {
+            $sql = "DELETE FROM Reserva WHERE ReservaID = ?";
+            $stmt = $this->pdo->prepare($sql);
+            $stmt->execute([$reservaID]);
+            $this->msg = "Reserva eliminada correctamente";
+        } catch (Exception $ex) {
+            $this->msg = "Error al eliminar la reserva";
+        }
+        return $this->msg;
+    }
+    
+
 }
