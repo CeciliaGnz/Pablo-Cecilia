@@ -1,5 +1,5 @@
 
-<? 
+<?php
 class Laboratorio {
     private $msg;
     private $pdo;
