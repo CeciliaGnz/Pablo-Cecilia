@@ -175,6 +175,23 @@ class Controller
         }
     }
 
+    public function eliminarReserva() {
+        if (isset($_GET['reservaID'])) {
+            $reservaID = $_GET['reservaID'];
+    
+            $resultado = $this->reserva->eliminarReserva($reservaID);
+    
+            if ($resultado) {
+                header("Location: index.php?op=misreservas");
+                exit();
+            } else {
+                echo "Error al eliminar la reserva.";
+            }
+        }
+    }
+    
+    
+
     
    
 
