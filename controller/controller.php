@@ -13,6 +13,7 @@ class Controller
     private $reporte;
     private $pc;
     private $resp;
+    private $msg;
 
    
     public function __CONSTRUCT(){
@@ -60,11 +61,10 @@ class Controller
     public function IngresarVerMisReservas()
     {
         $usuarioID = $_SESSION['UsuarioID'];
-        $misReservas = $this->reserva->ObtenerMisReservas($usuarioID);
+        $misReservas = $this->modelreservar->ObtenerMisReservas($usuarioID);
 
         require("view/panel/mis-reservas.php");
     }
-
 
     public function IngresarPerfil(){
         if(isset($_SESSION['UsuarioID'])) {
@@ -148,7 +148,6 @@ class Controller
             exit();
         }
     }
-
     public function editarComputadora(){
 
     }
@@ -159,15 +158,16 @@ class Controller
         if (isset($_GET['pcID'])) {
             $pcID = $_GET['pcID'];
             $pc = new Computadoras();
-            $resultado = $this->pc->eliminarComputadora($pcID);
+            $resultado = $pc->eliminarComputadora($pcID);
 
             if ($resultado) {
                 // Éxito al eliminar
-                header("Location: index.php?op=equipos");
+                header("Location: index.php?op=equipos&success=1");
                 exit();
             } else {
                 // Error al eliminar
-                echo "Error al eliminar la computadora";
+                header("Location: index.php?op=equipos&error=1");
+                exit();
             }
         } else {
             // Redireccionar o mostrar un mensaje de error
@@ -175,21 +175,8 @@ class Controller
         }
     }
 
-    public function eliminarReserva() {
-        if (isset($_GET['id_reserva'])) {
-            $reservaID = $_GET['id_reserva'];
     
-            $resultado = $this->reserva->eliminarReserva($reservaID);
-    
-            if ($resultado) {
-                header("Location: index.php?op=misreservas");
-                exit();
-            } else {
-                echo "Error al eliminar la reserva.";
-            }
-        }
-    }
-    
-    
+   
+
 }
    ?>

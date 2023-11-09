@@ -27,7 +27,7 @@ Class Computadoras {
             $this->msg = $nombre." Computadora Agregada";
             $this->msg= $nombre." ha sido agregada!";
        } catch (Exception $ex) {
-         $msg = "No se pudo agregar la computadora"; 
+         $this->msg = "No se pudo agregar la computadora"; 
        }
        return $this->msg;
     }
@@ -52,27 +52,15 @@ Class Computadoras {
             return $this->msg = "Error al cargar los datos"." ".$e; 
         }
     }
-
-    public function obtenerTotalEquiposDisponibles() {
-        try {
-            $sql = "SELECT COUNT(*) as total FROM Computadora WHERE Estado = 'disponible'";
-            $stmt = $this->pdo->prepare($sql);
-            $stmt->execute();
-            $total = $stmt->fetchColumn();
-            return $total;
-        } catch (Exception $e) {
-            return 0; 
-        }
-    }
     
     public function eliminarComputadora($pcID) {
         try {
             $sql = "DELETE FROM Computadora WHERE PcID = ?";
             $stmt = $this->pdo->prepare($sql);
             $stmt->execute([$pcID]);
-            $this->msg = "Computadora eliminada correctamente";
+            $this->msg = "exitoso";
         } catch (Exception $ex) {
-            $this->msg = "Error al eliminar la computadora";
+            $this->msg = "error";
         }
         return $this->msg;
     }
