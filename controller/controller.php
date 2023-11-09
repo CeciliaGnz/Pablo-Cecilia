@@ -138,8 +138,16 @@ class Controller
             $nombre = $_POST['nombrePC'];
             $lab_No = $_POST['nameLab'];
             $resultado = $pc->agregarComputadora($nombre, $lab_No);
-            header("Location: index.php?op=equipos");
-            exit();
+            
+            if ($resultado === 'exitoso') {
+                // Éxito al eliminar
+                header("Location: index.php?op=equipos&addSuccess=1");
+                exit();
+            } else {
+                // Error al eliminar
+                header("Location: index.php?op=equipos&addError=1");
+                exit();
+            }
         }
     }
     

@@ -88,57 +88,41 @@
                         </ol>
 
                         <div class="container mt-5">
+                        <?php if (!empty($misReservas)) : ?>
                         <table class="table">
-                        <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>Nombre</th>
-                                <th>No.Laboratorio</th>
-                                <th>Reservado por:</th>
-                                <th>Fecha de Reserva</th>
-                                <th>Descripción</th>
-                                <th>Acciones</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php foreach ($misReservas as $row) : ?>
+                            <thead>
                                 <tr>
-                                    <td><?php echo $row["id_reserva"]; ?></td>
-                                    <td><?php echo $row["nombre_equipo"]; ?></td>
-                                    <td><?php echo $row["no_laboratorio"]; ?></td>
-                                    <td><?php echo $row["reservado_por"]; ?></td>
-                                    <td><?php echo  " Fecha: ". $row["fecha_reserva"] . "<br>Hora:  " . $row["hora_inicial"] . " - " . $row["hora_final"]; ?></td>
-                                    <td><?php echo $row["descripcion"]; ?></td>
-                                    <td>
-                                        <button type="button" class="btn btn-danger btn-sm">
+                                    <th>ID</th>
+                                    <th>Nombre</th>
+                                    <th>No.Laboratorio</th>
+                                    <th>Reservado por:</th>
+                                    <th>Fecha de Reserva</th>
+                                    <th>Descripción</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php foreach ($misReservas as $row) : ?>
+                                    <tr>
+                                        <td><?php echo $row["id_reserva"]; ?></td>
+                                        <td><?php echo $row["nombre_equipo"]; ?></td>
+                                        <td><?php echo $row["no_laboratorio"]; ?></td>
+                                        <td><?php echo $row["reservado_por"]; ?></td>
+                                        <td><?php echo  " Fecha: ". $row["fecha_reserva"] . "<br>Hora:  " . $row["hora_inicial"] . " - " . $row["hora_final"]; ?></td>
+                                        <td><?php echo $row["descripcion"]; ?></td>
+                                        <td>
+                                        <button type="button" onclick="location.href='index.php?op=eliminarReserva&ReservaID=<?php echo $row["id_reserva"]; ?>'" class="btn btn-danger btn-sm">
                                             <i class="fas fa-trash"></i> Borrar
                                         </button>
-                                    </td>
-                                </tr>
-                            <?php endforeach; ?>
-                        </tbody>
-                    </table>
-                                <!-- Modal Confirmar Eliminación -->
-                    <div class="modal fade" id="confirmarEliminacionModal" tabindex="-1" role="dialog" aria-labelledby="confirmarEliminacionModalLabel" aria-hidden="true">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="confirmarEliminacionModalLabel">Confirmar Eliminación</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                    ¿Estás seguro de eliminar esta reserva?
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                                    <button type="button" class="btn btn-danger">Estoy Seguro</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Modal Confirmar Eliminación -->
+                                        </td>
+                                    </tr>
+                                <?php endforeach; ?>
+                            </tbody>
+                            </table>
+                                <?php else : ?>
+                                    <p>No hay reservas.</p>
+                                <?php endif; ?>
+
                         </div>
                     </div>
                 </main>

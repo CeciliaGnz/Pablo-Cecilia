@@ -24,10 +24,9 @@ Class Computadoras {
             VALUES (?, ?, 'disponible')";
             $parametros = array($labID, $nombre);
             $this->pdo->prepare($sql)->execute($parametros);
-            $this->msg = $nombre." Computadora Agregada";
-            $this->msg= $nombre." ha sido agregada!";
+            $this->msg = "exitoso";
        } catch (Exception $ex) {
-         $this->msg = "No se pudo agregar la computadora"; 
+         $this->msg = "error"; 
        }
        return $this->msg;
     }

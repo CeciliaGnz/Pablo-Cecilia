@@ -81,6 +81,8 @@
             <div id="layoutSidenav_content">
                 <main>
                 <!-- MENSAJES EMERGENTES -->
+
+                <!-- 1. BORRAR COMPUTADORAS -->
                 <?php
                     // Verificar si hay un mensaje de éxito en la URL
                     if (isset($_GET['success']) && $_GET['success'] == 1) {
@@ -107,7 +109,34 @@
                             }, 3000);
                           </script>';
                     }
-                    
+                ?>
+                <!-- AGREGAR COMPUTADORA -->
+                <?php
+                    // Verificar si hay un mensaje de éxito en la URL
+                    if (isset($_GET['addSuccess']) && $_GET['addSuccess'] == 1) {
+                        echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
+                                La computadora se agregó exitosamente.
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>';
+                        echo '<script>
+                            setTimeout(function() {
+                                window.location.href = "index.php?op=equipos";
+                            }, 3000);
+                          </script>';
+                    }
+
+                    // Verificar si hay un mensaje de error en la URL
+                    if (isset($_GET['addError']) && $_GET['addError'] == 1) {
+                        echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                Error al agregar la computadora.
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>';
+                        echo '<script>
+                            setTimeout(function() {
+                                window.location.href = "index.php?op=equipos";
+                            }, 3000);
+                          </script>';
+                    }
                 ?>
 
                     <div class="container-fluid px-4">
@@ -145,11 +174,8 @@
                                     }
                                     ?>
                                 </select>
-
-
-
                                 </div>
-                                <button type="submit" class="btn btn-primary">Agregar Computadora</button>
+                                <button type="submit" class="btn btn-primary"  data-bs-target="#agregarExitoso">Agregar Computadora</button>
                                 </form>
                             </div>
                             </div>
