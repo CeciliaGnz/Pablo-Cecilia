@@ -107,18 +107,13 @@
                                     <input type="text" name="nombre" class="form-control" placeholder="Inserte el nombre de la computadora">
                                 </div>
                                 <div class="mb-3">
-                                <select class="form-control" name="cars" id="cars">
-                                    <option value="def" disable selected>Selecciona un laboratorio</option>
+                                <select class="form-control" name="nameLab" id="lab">
                                     <?php 
                                     foreach ($nombreLab as $row){
                                         echo '<option value="'.$row["Lab_No"].'" disable selected>'.$row["Lab_No"].'</option>';
-                                        echo '<option value="volvo">5-509</option>';
                                     }
                                     ?>
-                                    
-
-                                    <option value="saab">6-609</option>
-                                    
+                                    <option value="def" selected>Selecciona un laboratorio</option>
                                 </select>
 
                                 </div>
