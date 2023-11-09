@@ -24,6 +24,8 @@ class Controller
         $this->laboratorio = new Laboratorio();
     }
 
+
+
     public function Index(){
         require("view/login.php");
     }
@@ -38,7 +40,6 @@ class Controller
         require("view/panel/dashboard.php");
         
     }
-
     public function IngresarEquipos(){
         $datos = $this->pc->mostrarComputadoras();
         $nombreLab = $this->laboratorio->mostrarLaboratorios();
@@ -46,7 +47,6 @@ class Controller
         
     }
     
-
     public function IngresarReserva() {
         $equiposDisponibles = $this->pc->ObtenerEquiposDisponibles();
         require("view/panel/form-reservar.php");
@@ -143,15 +143,19 @@ class Controller
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $nombre = $_POST['nombrePC'];
             $lab_No = $_POST['nameLab'];
-            $resultado = $this->pc->agregarComputadora($nombre, $lab_No);
-            header("Location: index.php?op=equipos");
-            exit();
+            $resultado = $pc->agregarComputadora($nombre, $lab_No);
+            
+            if ($resultado === 'exitoso') {
+                // Éxito al eliminar
+                header("Location: index.php?op=equipos&addSuccess=1");
+                exit();
+            } else {
+                // Error al eliminar
+                header("Location: index.php?op=equipos&addError=1");
+                exit();
+            }
         }
     }
-    public function editarComputadora(){
-
-    }
-
     
 
     public function eliminarComputadora(){

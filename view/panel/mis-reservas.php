@@ -90,28 +90,28 @@
                         <div class="container mt-5">
                         <?php if (!empty($misReservas)) : ?>
                         <table class="table">
-                            <thead>
-                                <tr>
-                                    <th>ID</th>
-                                    <th>Nombre</th>
-                                    <th>No.Laboratorio</th>
-                                    <th>Reservado por:</th>
-                                    <th>Fecha de Reserva</th>
-                                    <th>Descripción</th>
-                                    <th>Acciones</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php foreach ($misReservas as $row) : ?>
+                                <thead>
                                     <tr>
-                                        <td><?php echo $row["id_reserva"]; ?></td>
-                                        <td><?php echo $row["nombre_equipo"]; ?></td>
-                                        <td><?php echo $row["no_laboratorio"]; ?></td>
-                                        <td><?php echo $row["reservado_por"]; ?></td>
-                                        <td><?php echo  " Fecha: ". $row["fecha_reserva"] . "<br>Hora:  " . $row["hora_inicial"] . " - " . $row["hora_final"]; ?></td>
-                                        <td><?php echo $row["descripcion"]; ?></td>
-                                        <td>
-                                        <button type="button" onclick="location.href='index.php?op=eliminarReserva&id_reserva=<?php echo $row["id_reserva"]; ?>'" class="btn btn-danger btn-sm">
+                                        <th>ID</th>
+                                        <th>Nombre</th>
+                                        <th>No.Laboratorio</th>
+                                        <th>Reservado por:</th>
+                                        <th>Fecha de Reserva</th>
+                                        <th>Descripción</th>
+                                        <th>Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php foreach ($misReservas as $row) : ?>
+                                        <tr>
+                                            <td><?php echo $row["id_reserva"]; ?></td>
+                                            <td><?php echo $row["nombre_equipo"]; ?></td>
+                                            <td><?php echo $row["no_laboratorio"]; ?></td>
+                                            <td><?php echo $row["reservado_por"]; ?></td>
+                                            <td><?php echo  " Fecha: ". $row["fecha_reserva"] . "<br>Hora:  " . $row["hora_inicial"] . " - " . $row["hora_final"]; ?></td>
+                                            <td><?php echo $row["descripcion"]; ?></td>
+                                            <td>
+                                        <button type="button" onclick="location.href='index.php?op=eliminarReserva&ReservaID=<?php echo $row["id_reserva"]; ?>'" onclick="location.href='index.php?op=eliminarReserva&id_reserva=<?php echo $row["id_reserva"]; ?>'" class="btn btn-danger btn-sm">
                                             <i class="fas fa-trash"></i> Borrar
                                         </button>
                                         </td>
