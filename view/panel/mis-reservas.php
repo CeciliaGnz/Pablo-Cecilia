@@ -138,6 +138,5 @@
         <script src="../../public/bootstrap/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="../../public/js/script.js"></script>
         <script src="../../public/js/simple-datatables.min.js" crossorigin="anonymous"></script>
-        <script src="../../public/js/datatables-simple-demo.js"></script>
     </body>
 </html>
