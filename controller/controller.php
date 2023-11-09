@@ -9,14 +9,13 @@ require_once 'model/laboratorio.php';
 class Controller
 {
     private $model;
-    private $model4;
+    private $reserva;
     private $resp;
 
    
     public function __CONSTRUCT(){
         $this->model = new Usuario();
-        $this->modelreservar = new Reservar();
-        $this->modelreporte = new Reporte();
+        $this->reserva = new Reservar();
     }
 
     public function Index(){
@@ -28,7 +27,8 @@ class Controller
     }
 
     public function IngresarPanel(){
-        $totalReservas = $this->modelreporte->obtenerTotalReservas(); //this
+        $reporte = new Reporte();
+        $totalReservas = $reporte->obtenerTotalReservas(); 
         require("view/panel/dashboard.php");
         
     }
@@ -39,7 +39,9 @@ class Controller
         $obtenerNombresLab = new Laboratorio();
         $nombreLab = $obtenerNombresLab->mostrarLaboratorios();
         require("view/panel/lista-equipos.php"); 
+        
     }
+    
 
     public function IngresarReserva() {
         $pc = new Computadoras();
@@ -48,8 +50,8 @@ class Controller
     }
 
     public function IngresarVerReportes(){
-        
-        $result = $this->modelreporte->ObtenerReporteReservas();
+        $reporte = new Reporte();
+        $result = $reporte->ObtenerReporteReservas();
         require("view/panel/reporte-reservas.php"); 
     }
 
@@ -83,6 +85,7 @@ class Controller
     
         header('Location: ?op=crear&msg=' . $this->resp);
     }
+
 
     public function Ingresar(){
         $ingresarUsuario = new Usuario();
@@ -118,7 +121,8 @@ class Controller
             $descripcion = $_POST['descripcion'];
             $usuarioID = $_SESSION['UsuarioID']; 
 
-            $resultado = $this->modelreservar->RealizarReserva($equipo, $desde, $hasta, $descripcion, $usuarioID);
+            
+            $resultado = $this->reserva->RealizarReserva($equipo, $desde, $hasta, $descripcion, $usuarioID);
 
             if ($resultado === "Reserva exitosa.") {
                 $_SESSION['resultado_reserva'] = $resultado;
@@ -131,6 +135,44 @@ class Controller
         require 'view/panel/form-reservar.php';
     }
 
+
+    public function guardarComputadora(){
+        $pc = new Computadoras();
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $nombre = $_POST['nombrePC'];
+            $lab_No = $_POST['nameLab'];
+            $resultado = $pc->agregarComputadora($nombre, $lab_No);
+            header("Location: index.php?op=equipos");
+            exit();
+        }
+    }
+    public function editarComputadora(){
+
+    }
+
+    
+
+    public function eliminarComputadora(){
+        if (isset($_GET['pcID'])) {
+            $pcID = $_GET['pcID'];
+            $pc = new Computadoras();
+            $resultado = $pc->eliminarComputadora($pcID);
+
+            if ($resultado) {
+                // Éxito al eliminar
+                header("Location: index.php?op=equipos");
+                exit();
+            } else {
+                // Error al eliminar
+                echo "Error al eliminar la computadora";
+            }
+        } else {
+            // Redireccionar o mostrar un mensaje de error
+            echo "ID de computadora no proporcionado";
+        }
+    }
+
+    
    
 
 }

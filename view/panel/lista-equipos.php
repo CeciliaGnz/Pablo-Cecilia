@@ -87,9 +87,9 @@
                             <li class="breadcrumb-item active">Listado de Computadoras de la Universidad</li>
                         </ol>
                        <!-- Botón para abrir la ventana emergente -->
-                       <a href="index.php?op=nombresLab" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#agregarComputadoraModal">
+                       <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#agregarComputadoraModal">
                         Agregar Computadora
-                        </a>
+                        </button>
 
                         <!-- Ventana emergente (modal) -->
                         <div class="modal fade" id="agregarComputadoraModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -101,13 +101,13 @@
                             </div>
                             <div class="modal-body">
                                 <!-- Formulario para agregar una computadora -->
-                                <form method="post" action="index.php?action=agregarComputadora">
+                                <form method="POST" action="./?op=guardarComputadora">
                                 <!-- Campos para ingresar los datos de la computadora (nombre, laboratorio, descripción, estado) -->
                                 <div class="mb-3">
-                                    <input type="text" name="nombre" class="form-control" placeholder="Inserte el nombre de la computadora">
+                                    <input type="text" name="nombrePC" class="form-control" placeholder="Inserte el nombre de la computadora" required>
                                 </div>
                                 <div class="mb-3">
-                                <select class="form-control" name="nameLab" id="lab">
+                                <select class="form-control" name="nameLab" id="lab" required>
                                     <?php 
                                     foreach ($nombreLab as $row){
                                         echo '<option value="'.$row["Lab_No"].'" disable selected>'.$row["Lab_No"].'</option>';
@@ -136,22 +136,9 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>Computadora 1</td>
-                                        <td>4-405</td>
-                                        <td>Disponible</td>
-                                        <td>
-                                            <button type="button" class="btn btn-danger btn-sm">
-                                                <i class="fas fa-trash"></i>
-                                            </button>
-                                            <button type="button" class="btn btn-primary btn-sm">
-                                                <i class="fas fa-edit"></i>
-                                            </button>
-                                        </td>
-                                    </tr>
                                     <!-- FUNCIONALIADAD A CADA BOTON  -->
                                     <?php
+                                    if (!is_string($datos) && count($datos) > 0) {
                                         foreach ($datos as $campo) {
                                             echo "<tr>";
                                             echo "<td>".$campo["PcID"]."</td>";
@@ -159,15 +146,27 @@
                                             echo "<td>".$campo["Lab_No"] . "</td>";
                                             echo "<td>".$campo["Estado"] . "</td>";
                                             echo '<td>
-                                            <button type="button" class="btn btn-danger btn-sm">
-                                                <i class="fas fa-trash"></i>
-                                            </button>
-                                            <button type="button" class="btn btn-primary btn-sm">
+                                            <a href="?op=eliminarComputadora&pcID='.$campo["PcID"].'" type="button" class="btn btn-danger btn-sm")">
+                                            <i class="fas fa-trash"></i>
+                                            </a>
+                                            <button type="button" class="btn btn-primary btn-sm")">
                                                 <i class="fas fa-edit"></i>
                                             </button>
                                         </td>';
                                             echo "</tr>";
-                                        }   
+                                        }
+                                    } 
+                                    else {
+                                        echo '<tr class="text-center">
+                                        <td colspan="5">
+                                            <div class="alert alert-danger" role="alert">
+                                                No hay computadoras
+                                            </div>
+                                        </td>
+                                        </tr>';
+                                            }
+                                       
+                                       
                                     ?>
                                 </tbody>
                             </table>
@@ -183,6 +182,21 @@
                 </footer>
             </div>
         </div>
+        <script>
+        function eliminarElemento(id) {
+            var confirmacion = confirm('¿Seguro que deseas eliminar el elemento con ID ' + id + '?');
+            
+            if (confirmacion) {
+                // Aquí puedes realizar la lógica para eliminar el elemento (puede ser una llamada AJAX al servidor)
+                alert('Elemento eliminado con ID: ' + id);
+            }
+        }
+
+        function editarElemento(id) {
+            // Aquí puedes abrir una ventana emergente o redirigir a la página de edición
+            alert('Editar elemento con ID: ' + id);
+        }
+        </script>
         <script src="./public/bootstrap/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="./public/js/script.js"></script>
         <script src="./public/js/simple-datatables.min.js" crossorigin="anonymous"></script>
