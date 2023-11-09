@@ -176,8 +176,8 @@ class Controller
     }
 
     public function eliminarReserva() {
-        if (isset($_GET['reservaID'])) {
-            $reservaID = $_GET['reservaID'];
+        if (isset($_GET['id_reserva'])) {
+            $reservaID = $_GET['id_reserva'];
     
             $resultado = $this->reserva->eliminarReserva($reservaID);
     
@@ -191,9 +191,5 @@ class Controller
     }
     
     
-
-    
-   
-
 }
    ?>

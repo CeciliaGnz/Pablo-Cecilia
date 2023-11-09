@@ -111,7 +111,7 @@
                                         <td><?php echo  " Fecha: ". $row["fecha_reserva"] . "<br>Hora:  " . $row["hora_inicial"] . " - " . $row["hora_final"]; ?></td>
                                         <td><?php echo $row["descripcion"]; ?></td>
                                         <td>
-                                        <button type="button" onclick="location.href='index.php?op=eliminarReserva&ReservaID=<?php echo $row["id_reserva"]; ?>'" class="btn btn-danger btn-sm">
+                                        <button type="button" onclick="location.href='index.php?op=eliminarReserva&id_reserva=<?php echo $row["id_reserva"]; ?>'" class="btn btn-danger btn-sm">
                                             <i class="fas fa-trash"></i> Borrar
                                         </button>
                                         </td>
